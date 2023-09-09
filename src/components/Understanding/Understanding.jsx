@@ -52,6 +52,9 @@ function Understanding() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+                    <div>
+                        <button onClick={handleClose}>Exit</button>
+                    </div>
                     <h2>How well are you understanding the content?</h2>
                     <h3>On a scale of 0-10</h3>
                     <form onSubmit={handleSubmit}>

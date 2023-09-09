@@ -53,6 +53,9 @@ function Feeling() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+                    <div>
+                        <button onClick={handleClose}>Exit</button>
+                    </div>
                     <h2>How are you feeling today?</h2>
                     <h3>On a scale of 0-10</h3>
                     <form onSubmit={handleSubmit}>

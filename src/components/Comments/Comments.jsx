@@ -52,7 +52,10 @@ function Comments() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <h2>Any comment syou want to leave?</h2>
+                    <div>
+                        <button onClick={handleClose}>Exit</button>
+                    </div>
+                    <h2>Any comments you want to leave?</h2>
                     <form onSubmit={handleSubmit}>
                         <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} />
                         <button type="submit">Next</button>

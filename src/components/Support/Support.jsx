@@ -40,7 +40,7 @@ function Support() {
     }
 
     //Modal
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
     const handleClose = () => setOpen(false);
 
     return (
@@ -52,6 +52,9 @@ function Support() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+                    <div>
+                        <button onClick={handleClose}>Exit</button>
+                    </div>
                     <h2>How well are you being supported?</h2>
                     <h3>On a scale of 0-10</h3>
                     <form onSubmit={handleSubmit}>
