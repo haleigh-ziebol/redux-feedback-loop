@@ -7,20 +7,42 @@ import logger from 'redux-logger';
 import './index.css';
 import App from './components/App/App';
 
-const feelingReducer = (state = [], action) => {
+const feelingReducer = (state = 0, action) => {
     if(action.type === 'INPUT_FEELING') {
       return action.payload
     }
     return state;
+}
+const understandingReducer = (state = 0, action) => {
+  if(action.type === 'INPUT_UNDERSTANDING') {
+    return action.payload
   }
+  return state;
+}
+
+const supportReducer = (state = 0, action) => {
+  if(action.type === 'INPUT_SUPPORT') {
+    return action.payload
+  }
+  return state;
+}
+
+const commentReducer = (state = '', action) => {
+  if(action.type === 'INPUT_COMMENT') {
+    return action.payload
+  }
+  return state;
+}
   
   
-  // be sure to combine your reducers!
   const storeInstance = createStore(
     // reducers,
     combineReducers(
       {
         feelingReducer,
+        understandingReducer,
+        supportReducer,
+        commentReducer
       }
     ),
     applyMiddleware(logger)

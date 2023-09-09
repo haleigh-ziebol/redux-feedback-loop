@@ -1,50 +1,34 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-function Support() {
+function Feeling() {
+
+    const [feeling, setFeeling] = useState(5);
 
     const history = useHistory();
-    const [student, setStudent] = useState('');
-
-
-    // Called when the submit button is pressed
-    const addStudent = (newStudent) => {
-        // POST student to the server
-        axios({
-            method: 'POST',
-            url: '/students',
-            data: {github_name: newStudent}
-        }).then((response) => {
-            console.log(response);
-            history.push('/allStudents')
-        }).catch((err) => {
-            console.log(err);
-        });
-    };
+    const dispatch = useDispatch()
 
     // Called when the submit button is pressed
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        addStudent(student);
-        clearStudentFields();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(
+            {
+            type: 'INPUT_FEELING', 
+            payload: feeling
+            }
+        );
+        setFeeling(5);
+        history.push('/understanding')
     }
-
-    // Clear fields of the form by reseting the user
-    const clearStudentFields = () => {
-        setStudent('');
-    }
-
 
     return (
         <form onSubmit={handleSubmit}>
-            <input onChange={(event) => setStudent(event.target.value)} 
-                    placeholder="GitHub username"
-                    value={student} />
-            <input type="submit" value="Submit" />
+            <input type="number" onChange={(e)=>setFeeling(e.target.value)}id="quantity" min="1" max="10" required></input>
+            <button type="submit">Next</button>
         </form>
     );
     
 }
 
-export default Support;
+export default Feeling;
