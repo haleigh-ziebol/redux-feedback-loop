@@ -24,7 +24,7 @@ function Understanding() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="number" onChange={(e)=>setUnderstanding(e.target.value)}id="quantity" min="1" max="10" required></input>
+            <input type="number" value={understanding} onChange={(e)=>setUnderstanding(e.target.value)}id="quantity" min="1" max="10" required></input>
             <button type="submit">Next</button>
         </form>
     );

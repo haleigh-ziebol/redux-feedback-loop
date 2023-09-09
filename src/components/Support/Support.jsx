@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function Feeling() {
+function Support() {
 
-    const [feeling, setFeeling] = useState(5);
+    const [support, setSupport] = useState(5);
 
     const history = useHistory();
     const dispatch = useDispatch()
@@ -14,21 +14,21 @@ function Feeling() {
         e.preventDefault();
         dispatch(
             {
-            type: 'INPUT_FEELING', 
-            payload: feeling
+            type: 'INPUT_SUPPORT', 
+            payload: support
             }
         );
-        setFeeling(5);
-        history.push('/understanding')
+        setSupport(5);
+        history.push('/comments')
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="number" onChange={(e)=>setFeeling(e.target.value)}id="quantity" min="1" max="10" required></input>
+            <input type="number" value={support} onChange={(e)=>setSupport(e.target.value)}id="quantity" min="1" max="10" required />
             <button type="submit">Next</button>
         </form>
     );
     
 }
 
-export default Feeling;
+export default Support;

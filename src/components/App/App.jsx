@@ -1,6 +1,5 @@
 import React from 'react';
 import {HashRouter as Router, Route, Link} from "react-router-dom";
-import axios from 'axios';
 
 //import components
 import Feeling from '../Feeling/Feeling';
