@@ -33,7 +33,13 @@ const commentReducer = (state = '', action) => {
   }
   return state;
 }
-  
+
+const feedbackReducer = (state = '', action) => {
+  if(action.type === 'INPUT_FEEDBACK') {
+    return action.payload
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -42,7 +48,8 @@ const commentReducer = (state = '', action) => {
         feelingReducer,
         understandingReducer,
         supportReducer,
-        commentReducer
+        commentReducer,
+        feedbackReducer
       }
     ),
     applyMiddleware(logger)
