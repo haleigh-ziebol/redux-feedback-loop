@@ -20,7 +20,9 @@ if (process.env.DATABASE_URL) {
 else {
     pool = new pg.Pool({
         host: 'localhost',
-        port: 5432,
+        port: 5430,
+        user: 'postgres',
+        password: '0099',
         database: 'prime_feedback', 
     });
 }
