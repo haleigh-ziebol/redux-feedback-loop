@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Home from '../Home/Home';
 
-function ColorTabs() {
+//import Components
+import Home from '../Home/Home';
+import Admin from '../Admin/Admin';
+
+function NavBar() {
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
 
     const handleTabChange = (e,value) => {
@@ -29,10 +32,10 @@ function ColorTabs() {
             <Home />
         )}
         {currentTabIndex ==='1' && (
-            <div> </div>
+            <Admin />
         )}
         
     </div>
   );
 }
-export default ColorTabs;
+export default NavBar;
