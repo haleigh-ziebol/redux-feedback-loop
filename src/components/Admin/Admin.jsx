@@ -37,13 +37,11 @@ function Admin(){
                     </tr>
                 </thead>
                 <tbody>
-                {
-                    feedbackList.map((feedback) => {
-                        return (
-                            <FeedbackItem feedback={feedback}/>
+                    {feedbackList.map((feedback) => {
+                         return (
+                             <FeedbackItem feedback={feedback} fetchData={fetchData}/>
                         )
-                    })
-                }
+                    })}
                 </tbody>
             </table>
 

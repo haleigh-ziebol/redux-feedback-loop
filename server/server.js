@@ -11,6 +11,8 @@ app.use(express.static('build'));
 const pool = require('./modules/pool');
 
 /** ---------- EXPRESS ROUTES ---------- **/
+
+//POST
 app.post('/feedback',  (req, res) => {
     let newFeedback = req.body;
     console.log(`Adding feedback`, newFeedback);
@@ -24,8 +26,9 @@ app.post('/feedback',  (req, res) => {
         console.log(`Error adding new book`, error);
         res.sendStatus(500);
       });
-});
+});//end POST
 
+//GET
 app.get('/feedbacklist',  (req, res) => {
   let queryText = `SELECT * FROM "feedback";`;
   pool.query(queryText)
@@ -36,12 +39,12 @@ app.get('/feedbacklist',  (req, res) => {
       console.log(`Error adding new book`, error);
       res.sendStatus(500);
     });
-});
+}); //end GET
 
 // DELETE
-router.delete('/:id', (req, res) => {
+app.delete('/feedback/:id', (req, res) => {
   let id = req.params.id;
-  let queryText = 'DELETE FROM "gallery-items" WHERE "id" = $1;';
+  let queryText = 'DELETE FROM "feedback" WHERE "id" = $1;';
   pool.query(queryText,[id] )
   .then((result) =>{
       res.sendStatus(200);
