@@ -39,8 +39,7 @@ function Review() {
         }
         axios.post('/feedback', newBook)
         .then(response =>{
-            setOpen(false);
-            alert('Your feedback was submitted')
+            history.push('/submitted');
         })
         .catch(error => {
           console.log(error);
@@ -52,6 +51,7 @@ function Review() {
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
+        history.push('/')
     }
 
     return (

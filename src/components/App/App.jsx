@@ -7,7 +7,9 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
-import Home from '../Home/Home'
+import Home from '../Home/Home';
+import Submitted from '../Submitted/Submitted';
+import NavBar from '../NavBar/NavBar'
 
 //import styling
 import './App.css';
@@ -17,13 +19,12 @@ function App() {
   return (
     <Router>
       <div className='App'>
+        <header className='App-header'>
+          <h1 className='App-title'>Feedback!</h1>
+        </header>
         <div>
-            <header className='App-header'>
-                <h1 className='App-title'>Feedback!</h1>
-                <h4>Don't forget it!</h4>
-            </header>
+          <NavBar />
         </div>
-        <Home />
       </div>
 
       {/* set routes for parts of form */}
@@ -42,8 +43,8 @@ function App() {
       <Route path='/review' exact>
         <Review />
       </Route>
-      <Route path='/home' exact>
-        <Home />
+      <Route path='/submitted' exact>
+        <Submitted />
       </Route>
 
     </Router>

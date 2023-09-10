@@ -40,8 +40,11 @@ function Comments() {
     }
 
     //Modal
-    const [open, setOpen] = React.useState(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = useState(true);
+    const handleClose = () =>{
+        setOpen(false);
+        history.push('/')
+    }
 
     return (
         <div>

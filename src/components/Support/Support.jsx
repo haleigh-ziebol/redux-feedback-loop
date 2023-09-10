@@ -41,7 +41,10 @@ function Support() {
 
     //Modal
     const [open, setOpen] = useState(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () =>{
+        setOpen(false);
+        history.push('/')
+    }
 
     return (
         <div>

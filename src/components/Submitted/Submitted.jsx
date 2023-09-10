@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Axios from 'axios';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -19,26 +20,19 @@ const style = {
     p: 4,
   };
 
-function Feeling() {
-
-    const [feeling, setFeeling] = useState(5);
+function Submitted() {
 
     const history = useHistory();
     const dispatch = useDispatch()
+    const feeling = useSelector((store)=>store.feelingReducer);
+    const understanding = useSelector((store)=>store.understandingReducer);
+    const support = useSelector((store)=>store.supportReducer);
+    const comments = useSelector((store)=>store.commentReducer);
 
-    // Called when the submit button is pressed
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(
-            {
-            type: 'INPUT_FEELING', 
-            payload: feeling
-            }
-        );
-        setFeeling(5);
-        history.push('/understanding')
+    const handleSubmit = () => {
+        history.push('/feeling')
     }
-
+    
     //Modal
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
@@ -50,7 +44,6 @@ function Feeling() {
         <div>
             <Modal
             open={open}
-            onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             >
@@ -58,18 +51,16 @@ function Feeling() {
                     <div>
                         <button onClick={handleClose}>Exit</button>
                     </div>
-                    <h2>How are you feeling today?</h2>
-                    <h3>On a scale of 0-10</h3>
-                    <form onSubmit={handleSubmit}>
-                    <input type="number" value={feeling} onChange={(e)=>setFeeling(e.target.value)}id="quantity" min="1" max="10" required></input>
-                    <button type="submit">Next</button>
-                    </form>
+                    <br/>
+                    <img src='https://images.ctfassets.net/sfnkq8lmu5d7/5s1kya8JDQapExFKfM8ahI/20f07aaace35649eefb27022a2f13556/2021_0517-catGotchaDay-AdobeStock_235571404.jpg?w=1000&h=750&fl=progressive&q=70&fm=jpg'
+                        width='250' height='200'/>
+                    <h1>Party Cat thanks you!</h1>
+                    <button onClick={handleSubmit}>Leave More Feedback</button>
                 </Box>
             </Modal>
-      </div>
-
+        </div>
     );
     
 }
 
-export default Feeling;
+export default Submitted;

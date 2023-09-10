@@ -49,7 +49,7 @@ const feedbackReducer = (state = '', action) => {
         understandingReducer,
         supportReducer,
         commentReducer,
-        feedbackReducer
+        feedbackReducer,
       }
     ),
     applyMiddleware(logger)
