@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -21,10 +21,23 @@ const style = {
 
 function Understanding() {
 
-    const [understanding, setUnderstanding] = useState(5);
+    const [understanding, setUnderstanding] = useState('');
+    const useStoredResponse = useSelector((store)=>store.goBackReducer);
+    const storedUnderstanding = useSelector((store)=>store.understandingReducer);
 
     const history = useHistory();
     const dispatch = useDispatch()
+
+    //used with back button
+    const setStoredResponse = () => {
+        if (useStoredResponse === true){
+            setUnderstanding(storedUnderstanding)
+        }
+    }
+
+    useEffect(() => {
+        setStoredResponse(); //run when page loads
+      }, [])
 
     // Called when the submit button is pressed
     const handleSubmit = (e) => {
@@ -39,11 +52,23 @@ function Understanding() {
         history.push('/support')
     }
 
+    // Called when the back button is pressed
+    const handleBack = (e) => {
+        e.preventDefault();
+        dispatch(
+            {
+            type: 'UPDATE', 
+            }
+        );
+        history.push('/feeling')
+    }
+
     //Modal
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
-        history.push('/')
+        history.push('/');
+        dispatch({type: 'EXIT_BACK'})
     }
 
     return (
@@ -62,7 +87,10 @@ function Understanding() {
                     <h3>On a scale of 0-10</h3>
                     <form onSubmit={handleSubmit}>
                         <input type="number" value={understanding} onChange={(e)=>setUnderstanding(e.target.value)}id="quantity" min="1" max="10" required></input>
-                        <button type="submit">Next</button>
+                        <div id="nav-buttons">
+                            <button onClick={handleBack}>Back</button>
+                            <button type="submit">Next</button>
+                        </div>
                     </form>
                 </Box>
             </Modal>

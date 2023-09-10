@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -21,10 +21,24 @@ const style = {
 
 function Feeling() {
 
-    const [feeling, setFeeling] = useState(5);
+    const [feeling, setFeeling] = useState('');
+
+    const useStoredResponse = useSelector((store)=>store.goBackReducer);
+    const storedFeeling = useSelector((store)=>store.feelingReducer);
 
     const history = useHistory();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    
+    //used with back button
+    const setStoredResponse = () => {
+        if (useStoredResponse === true){
+            setFeeling(storedFeeling)
+        }
+    }
+
+    useEffect(() => {
+        setStoredResponse(); //run when page loads
+    }, [])
 
     // Called when the submit button is pressed
     const handleSubmit = (e) => {
@@ -35,15 +49,17 @@ function Feeling() {
             payload: feeling
             }
         );
-        setFeeling(5);
+        setFeeling('');
         history.push('/understanding')
     }
+
 
     //Modal
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
-        history.push('/')
+        history.push('/');
+        dispatch({type: 'EXIT_BACK'})
     }
 
     return (

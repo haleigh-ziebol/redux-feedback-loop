@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 
@@ -23,28 +23,35 @@ const style = {
 function Review() {
 
     const history = useHistory();
-    const dispatch = useDispatch()
     const feeling = useSelector((store)=>store.feelingReducer);
     const understanding = useSelector((store)=>store.understandingReducer);
     const support = useSelector((store)=>store.supportReducer);
     const comments = useSelector((store)=>store.commentReducer);
     const axios = Axios;
+    const dispatch = useDispatch();
 
     const handleSubmit = () => {
-        let newBook = {
+        let newFeedback = {
                 feeling: feeling,
                 understanding: understanding,
                 support: support,
                 comments: comments
         }
-        axios.post('/feedback', newBook)
+        axios.post('/feedback', newFeedback)
         .then(response =>{
             history.push('/submitted');
+            dispatch({type: 'EXIT_BACK'})
         })
         .catch(error => {
           console.log(error);
           alert('Sorry cannot add book')
         })
+    }
+
+    // Called when the back button is pressed
+    const handleEdit = (e) => {
+        e.preventDefault();
+        history.push('/edit')
     }
     
     //Modal
@@ -52,6 +59,7 @@ function Review() {
     const handleClose = () =>{
         setOpen(false);
         history.push('/')
+        dispatch({type:'EXIT_BACK'})
     }
 
     return (
@@ -70,7 +78,10 @@ function Review() {
                     <p>Understanding: {understanding}</p>
                     <p>Support: {support}</p>
                     <p>Comments: {comments}</p>
-                    <button onClick={handleSubmit}>Submit Feedback</button>
+                    <div id="nav-buttons">
+                            <button onClick={handleEdit}>Edit Feedback</button>
+                            <button onClick={handleSubmit}>Submit Feedback</button>
+                    </div>
                 </Box>
             </Modal>
         </div>

@@ -7,9 +7,10 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
-import Home from '../Home/Home';
 import Submitted from '../Submitted/Submitted';
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar';
+import EditRaw from '../EditRaw/EditRaw';
+
 
 //import styling
 import './App.css';
@@ -45,6 +46,9 @@ function App() {
       </Route>
       <Route path='/submitted' exact>
         <Submitted />
+      </Route>
+      <Route path='/edit' exact>
+        <EditRaw />
       </Route>
 
     </Router>

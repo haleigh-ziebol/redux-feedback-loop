@@ -40,6 +40,16 @@ const feedbackReducer = (state = '', action) => {
   }
   return state;
 }
+
+const goBackReducer = (state = false, action) => {
+  if(action.type === 'UPDATE') {
+    return true
+  }
+  if(action.type === 'EXIT_BACK') {
+    return false
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -50,6 +60,7 @@ const feedbackReducer = (state = '', action) => {
         supportReducer,
         commentReducer,
         feedbackReducer,
+        goBackReducer
       }
     ),
     applyMiddleware(logger)

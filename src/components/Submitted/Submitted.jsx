@@ -23,11 +23,6 @@ const style = {
 function Submitted() {
 
     const history = useHistory();
-    const dispatch = useDispatch()
-    const feeling = useSelector((store)=>store.feelingReducer);
-    const understanding = useSelector((store)=>store.understandingReducer);
-    const support = useSelector((store)=>store.supportReducer);
-    const comments = useSelector((store)=>store.commentReducer);
 
     const handleSubmit = () => {
         history.push('/feeling')

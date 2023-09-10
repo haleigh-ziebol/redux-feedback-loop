@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -22,9 +22,22 @@ const style = {
 function Comments() {
 
     const [comment, setComment] = useState('');
+    const useStoredResponse = useSelector((store)=>store.goBackReducer);
+    const storedComment = useSelector((store)=>store.commentReducer);
 
     const history = useHistory();
     const dispatch = useDispatch()
+
+    //used with back button
+    const setStoredResponse = () => {
+        if (useStoredResponse === true){
+            setComment(storedComment)
+        }
+    }
+
+    useEffect(() => {
+        setStoredResponse(); //run when page loads
+    }, [])
 
     // Called when the submit button is pressed
     const handleSubmit = (e) => {
@@ -39,11 +52,23 @@ function Comments() {
         history.push('/review')
     }
 
+    // Called when the back button is pressed
+    const handleBack = (e) => {
+        e.preventDefault();
+        dispatch(
+            {
+            type: 'UPDATE', 
+            }
+        );
+        history.push('/support')
+    }
+
     //Modal
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
-        history.push('/')
+        history.push('/');
+        dispatch({type: 'EXIT_BACK'})
     }
 
     return (
@@ -61,7 +86,10 @@ function Comments() {
                     <h2>Any comments you want to leave?</h2>
                     <form onSubmit={handleSubmit}>
                         <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} />
-                        <button type="submit">Next</button>
+                        <div id="nav-buttons">
+                            <button onClick={handleBack}>Back</button>
+                            <button type="submit">Next</button>
+                        </div>
                     </form>
                 </Box>
             </Modal>
