@@ -6,6 +6,8 @@ import Axios from 'axios';
 //MUI components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 //box style
 const style = {
@@ -70,18 +72,22 @@ function Review() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <div>
-                        <button onClick={handleClose}>Exit</button>
-                    </div>
-                    <h1>Review Your Feedback</h1>
-                    <p>Feeling: {feeling}</p>
-                    <p>Understanding: {understanding}</p>
-                    <p>Support: {support}</p>
-                    <p>Comments: {comments}</p>
-                    <div id="nav-buttons">
-                            <button onClick={handleEdit}>Edit Feedback</button>
-                            <button onClick={handleSubmit}>Submit Feedback</button>
-                    </div>
+                    <Stack>
+                        <div>
+                            <Button variant="text" onClick={handleClose}>Exit</Button>
+                        </div>
+                        <h1>Review Your Feedback</h1>
+                        <p>Feeling: {feeling}</p>
+                        <p>Understanding: {understanding}</p>
+                        <p>Support: {support}</p>
+                        <p>Comments: {comments}</p>
+                        <br/>
+                        <br/>
+                        <Stack spacing={2} direction="row" justifyContent="center">
+                                <Button variant="contained" onClick={handleEdit}>Edit Feedback</Button>
+                                <Button variant="contained" onClick={handleSubmit}>Submit Feedback</Button>
+                        </Stack>
+                    </Stack>
                 </Box>
             </Modal>
         </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Button from '@mui/material/Button';
 
 function FeedbackItem({feedback, fetchData}) {
 
@@ -21,7 +22,7 @@ function FeedbackItem({feedback, fetchData}) {
             <td>{feedback.understanding}</td>
             <td>{feedback.support}</td>
             <td>{feedback.comments}</td>
-            <td><button onClick={handleDelete}>Delete</button></td>
+            <td><Button variant="text" onClick={handleDelete}>Delete</Button></td>
         </tr>
     )
 }

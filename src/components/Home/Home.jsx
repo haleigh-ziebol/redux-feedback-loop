@@ -1,6 +1,9 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 
+//MUI components
+import Button from '@mui/material/Button'
+
 function Home(){
     const history = useHistory();
     return(
@@ -11,7 +14,7 @@ function Home(){
             </div>
             <br/>
             <div>
-                <button onClick={()=>history.push('/feeling')}>Submit Feedback </button>
+                <Button variant="contained" onClick={()=>history.push('/feeling')}>Submit Feedback </Button>
             </div>
         </div>
     )

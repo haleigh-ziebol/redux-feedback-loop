@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 //MUI components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 //box style
 const style = {
@@ -81,15 +83,17 @@ function Comments() {
             >
                 <Box sx={style}>
                     <div>
-                        <button onClick={handleClose}>Exit</button>
+                        <Button variant="text" onClick={handleClose}>Exit</Button>
                     </div>
                     <h2>Any comments you want to leave?</h2>
                     <form onSubmit={handleSubmit}>
                         <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} />
-                        <div id="nav-buttons">
-                            <button onClick={handleBack}>Back</button>
-                            <button type="submit">Next</button>
-                        </div>
+                        <br/>
+                        <br/>
+                        <Stack spacing={2} direction="row" justifyContent="center">
+                            <Button variant="contained" onClick={handleBack}>Back</Button>
+                            <Button variant="contained" type="submit">Review</Button>
+                        </Stack>
                     </form>
                 </Box>
             </Modal>

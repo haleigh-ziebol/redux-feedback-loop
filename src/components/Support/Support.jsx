@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 //MUI components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 //box style
 const style = {
@@ -81,16 +83,18 @@ function Support() {
             >
                 <Box sx={style}>
                     <div>
-                        <button onClick={handleClose}>Exit</button>
+                        <Button variant="text" onClick={handleClose}>Exit</Button>
                     </div>
                     <h2>How well are you being supported?</h2>
                     <h3>On a scale of 0-10</h3>
                     <form onSubmit={handleSubmit}>
                         <input type="number" value={support} onChange={(e)=>setSupport(e.target.value)}id="quantity" min="1" max="10" required />
-                        <div id="nav-buttons">
-                            <button onClick={handleBack}>Back</button>
-                            <button type="submit">Next</button>
-                        </div>
+                        <br/>
+                        <br/>
+                        <Stack spacing={2} direction="row" justifyContent="center">
+                            <Button variant="contained" onClick={handleBack}>Back</Button>
+                            <Button variant="contained" type="submit">Next</Button>
+                        </Stack>
                     </form>
                 </Box>
             </Modal>

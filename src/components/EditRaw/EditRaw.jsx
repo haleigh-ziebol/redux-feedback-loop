@@ -6,6 +6,8 @@ import Axios from 'axios';
 //MUI components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 //box style
 const style = {
@@ -57,6 +59,7 @@ function EditRaw() {
     const handleClose = () =>{
         setOpen(false);
         history.push('/')
+        dispatch({type: 'EXIT_BACK'})
     }
 
     return (
@@ -67,40 +70,42 @@ function EditRaw() {
             aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <div>
-                        <button onClick={handleClose}>Exit</button>
-                    </div>
-                    <h1>Edit Your Feedback</h1>
-                    <label for="feeling">Feeling:</label>
-                    <input 
-                        type="number" id="feeling" 
-                        value={feeling} onChange={(e)=>setFeeling(e.target.value)}
-                        min="1" max="10" required 
-                    />
-                    <br/>
-                    <label for="understanding">Understanding:</label>
-                    <input 
-                        type="number" id="understanding" 
-                        value={understanding} onChange={(e)=>setUnderstanding(e.target.value)}
-                        min="1" max="10" required 
-                    />
-                    <br/>
-                    <label for="support">Support:</label>
-                    <input 
-                        type="number" id="support" 
-                        value={support} onChange={(e)=>setSupport(e.target.value)}
-                        min="1" max="10" required 
-                    />
-                    <br/>
-                    <label for="comments">Comments:</label>
-                    <input type="text" id="comments"
-                    value={comment} onChange={(e)=>setComment(e.target.value)} 
-                    />
-                    <br/>
-                    <br/>
-                    <div id="nav-buttons">
-                            <button onClick={handleSubmit}>Submit Feedback</button>
-                    </div>
+                    <Stack>
+                        <div>
+                            <Button variant="text" onClick={handleClose}>Exit</Button>
+                        </div>
+                        <h1>Edit Your Feedback</h1>
+                        <label for="feeling">Feeling:</label>
+                        <input 
+                            type="number" id="feeling" 
+                            value={feeling} onChange={(e)=>setFeeling(e.target.value)}
+                            min="1" max="10" required 
+                        />
+                        <br/>
+                        <label for="understanding">Understanding:</label>
+                        <input 
+                            type="number" id="understanding" 
+                            value={understanding} onChange={(e)=>setUnderstanding(e.target.value)}
+                            min="1" max="10" required 
+                        />
+                        <br/>
+                        <label for="support">Support:</label>
+                        <input 
+                            type="number" id="support" 
+                            value={support} onChange={(e)=>setSupport(e.target.value)}
+                            min="1" max="10" required 
+                        />
+                        <br/>
+                        <label for="comments">Comments:</label>
+                        <input type="text" id="comments"
+                        value={comment} onChange={(e)=>setComment(e.target.value)} 
+                        />
+                        <br/>
+                        <br/>
+                        <div>
+                                <Button variant="contained"vonClick={handleSubmit}>Submit Feedback</Button>
+                        </div>
+                    </Stack>
                 </Box>
             </Modal>
         </div>
