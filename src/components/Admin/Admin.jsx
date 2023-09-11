@@ -12,6 +12,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
 
 function Admin(){
     const axios = Axios;
@@ -92,29 +93,34 @@ function Admin(){
                 </Button>
                 </DialogActions>
             </Dialog>
+            <br/>
+            <br/>
             {
                 (feedbackList.length ==0) ?
 
                 <p>No feedback currently! Check back later.</p> :
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feeling</th>
-                            <th>Understanding</th>
-                            <th>Support</th>
-                            <th>Comments</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {feedbackList.map((feedback) => {
-                            return (
-                                <FeedbackItem feedback={feedback} />
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <div>
+                    <table>
+                        <caption>Feedback</caption>
+                        <thead>
+                            <tr>
+                                <th>Feeling</th>
+                                <th>Understanding</th>
+                                <th>Support</th>
+                                <th>Comments</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {feedbackList.map((feedback) => {
+                                return (
+                                    <FeedbackItem feedback={feedback} />
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             }
         </div>
     )

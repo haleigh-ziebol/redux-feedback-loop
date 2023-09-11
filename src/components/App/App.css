@@ -21,3 +21,27 @@
 h4 {
   font-style: italic;
 }
+
+/*table formatting*/
+caption{
+  font-size: large;
+  text-align: left;
+  padding: 15px
+}
+
+th, td {
+  padding: 15px;
+}
+
+th{
+  text-align: left;
+  background-color: #eee;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
