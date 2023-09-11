@@ -18,9 +18,9 @@ function FeedbackItem({feedback}) {
 
     return(
         <tr key={feedback.id}>
-            <td>{feedback.feeling}</td>
-            <td>{feedback.understanding}</td>
-            <td>{feedback.support}</td>
+            <td className={(feedback.feeling<5) ? "flagged" : "" }>{feedback.feeling}</td>
+            <td className={(feedback.understanding<5) ? "flagged" : "" }>{feedback.understanding}</td>
+            <td className={(feedback.support<5) ? "flagged" : "" }>{feedback.support}</td>
             <td>{feedback.comments}</td>
             <td><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>
         </tr>

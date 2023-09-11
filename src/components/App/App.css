@@ -25,6 +25,7 @@ h4 {
 /*table formatting*/
 caption{
   font-size: large;
+  font-style: bold;
   text-align: left;
   padding: 15px
 }
@@ -44,4 +45,8 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
   background-color: #eee;
+}
+
+.flagged{
+  background-color: #FFCCCB;
 }
