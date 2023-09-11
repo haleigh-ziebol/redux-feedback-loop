@@ -30,6 +30,7 @@ function EditRaw() {
     const supportStored = useSelector((store)=>store.supportReducer);
     const commentsStored = useSelector((store)=>store.commentReducer);
     const axios = Axios;
+    const dispatch = useDispatch();
 
     //for inputs
     const [feeling, setFeeling] = useState(feelingStored);
@@ -75,35 +76,35 @@ function EditRaw() {
                             <Button variant="text" onClick={handleClose}>Exit</Button>
                         </div>
                         <h1>Edit Your Feedback</h1>
-                        <label for="feeling">Feeling:</label>
+                        <label htmlFor="feeling">Feeling:</label>
                         <input 
                             type="number" id="feeling" 
                             value={feeling} onChange={(e)=>setFeeling(e.target.value)}
                             min="1" max="10" required 
                         />
                         <br/>
-                        <label for="understanding">Understanding:</label>
+                        <label htmlFor="understanding">Understanding:</label>
                         <input 
                             type="number" id="understanding" 
                             value={understanding} onChange={(e)=>setUnderstanding(e.target.value)}
                             min="1" max="10" required 
                         />
                         <br/>
-                        <label for="support">Support:</label>
+                        <label htmlFor="support">Support:</label>
                         <input 
                             type="number" id="support" 
                             value={support} onChange={(e)=>setSupport(e.target.value)}
                             min="1" max="10" required 
                         />
                         <br/>
-                        <label for="comments">Comments:</label>
+                        <label htmlFor="comments">Comments:</label>
                         <input type="text" id="comments"
                         value={comment} onChange={(e)=>setComment(e.target.value)} 
                         />
                         <br/>
                         <br/>
                         <div>
-                                <Button variant="contained"vonClick={handleSubmit}>Submit Feedback</Button>
+                                <Button variant="contained"onClick={handleSubmit}>Submit Feedback</Button>
                         </div>
                     </Stack>
                 </Box>
