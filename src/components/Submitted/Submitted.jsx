@@ -6,6 +6,7 @@ import Axios from 'axios';
 //MUI components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { Button } from '@mui/material';
 
 //box style
 const style = {
@@ -44,13 +45,13 @@ function Submitted() {
             >
                 <Box sx={style}>
                     <div>
-                        <button onClick={handleClose}>Exit</button>
+                        <Button variant="text" onClick={handleClose}>Exit</Button>
                     </div>
                     <br/>
                     <img src='https://images.ctfassets.net/sfnkq8lmu5d7/5s1kya8JDQapExFKfM8ahI/20f07aaace35649eefb27022a2f13556/2021_0517-catGotchaDay-AdobeStock_235571404.jpg?w=1000&h=750&fl=progressive&q=70&fm=jpg'
                         width='250' height='200'/>
                     <h1>Party Cat thanks you!</h1>
-                    <button onClick={handleSubmit}>Leave More Feedback</button>
+                    <Button variant="contained" onClick={handleSubmit}>Leave More Feedback</Button>
                 </Box>
             </Modal>
         </div>

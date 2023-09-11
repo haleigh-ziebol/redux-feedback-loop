@@ -1,19 +1,18 @@
-import axios from "axios";
+import { useDispatch } from "react-redux";
+
+//mui icons
 import Button from '@mui/material/Button';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function FeedbackItem({feedback, fetchData}) {
+function FeedbackItem({feedback}) {
 
-    //delete feedback
+    const dispatch = useDispatch();
+
+    //sends info to reducer so that dialog will open 
+    //and store ID for feedback to delete
     const handleDelete = () => {
-        let id = feedback.id
-        axios.delete(`/feedback/${id}`)
-        .then((response) =>{
-        console.log(response.data);
-        fetchData();
-        })
-        .catch((error) => {
-        console.log(error)
-        })
+        dispatch({type: 'OPEN_DIALOG'})
+        dispatch({type: 'DELETE_ID', payload: feedback.id})
     }
 
     return(
@@ -22,7 +21,7 @@ function FeedbackItem({feedback, fetchData}) {
             <td>{feedback.understanding}</td>
             <td>{feedback.support}</td>
             <td>{feedback.comments}</td>
-            <td><Button variant="text" onClick={handleDelete}>Delete</Button></td>
+            <td><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>
         </tr>
     )
 }

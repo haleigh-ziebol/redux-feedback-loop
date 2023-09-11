@@ -77,10 +77,10 @@ function Review() {
                             <Button variant="text" onClick={handleClose}>Exit</Button>
                         </div>
                         <h1>Review Your Feedback</h1>
-                        <p>Feeling: {feeling}</p>
-                        <p>Understanding: {understanding}</p>
-                        <p>Support: {support}</p>
-                        <p>Comments: {comments}</p>
+                        <p><b>Feeling: </b> {feeling}</p>
+                        <p><b>Understanding: </b> {understanding}</p>
+                        <p><b>Support: </b> {support}</p>
+                        <p><b>Comments: </b>{comments}</p>
                         <br/>
                         <br/>
                         <Stack spacing={2} direction="row" justifyContent="center">

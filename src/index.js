@@ -50,6 +50,23 @@ const goBackReducer = (state = false, action) => {
   }
   return state;
 }
+
+const deleteIDReducer = (state = '', action) => {
+  if(action.type === 'DELETE_ID') {
+    return action.payload
+  }
+  return state;
+}
+
+const deleteDialogReducer = (state = false, action) => {
+  if(action.type === 'OPEN_DIALOG') {
+    return true
+  }
+  else if(action.type === 'CLOSE_DIALOG') {
+    return false
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -60,7 +77,9 @@ const goBackReducer = (state = false, action) => {
         supportReducer,
         commentReducer,
         feedbackReducer,
-        goBackReducer
+        goBackReducer,
+        deleteIDReducer,
+        deleteDialogReducer
       }
     ),
     applyMiddleware(logger)
