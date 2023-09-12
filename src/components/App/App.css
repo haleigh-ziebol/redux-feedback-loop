@@ -23,13 +23,6 @@ h4 {
 }
 
 /*table formatting*/
-caption{
-  font-size: large;
-  font-style: bold;
-  text-align: left;
-  padding: 15px
-}
-
 th, td {
   padding: 15px;
 }
@@ -53,4 +46,15 @@ tbody tr:nth-child(even) {
 
 .flagged{
   background-color: #FFCCCB !important;
+}
+
+.table-header{
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+table{
+  padding: 15px;
 }

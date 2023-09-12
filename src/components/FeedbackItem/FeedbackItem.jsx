@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 //mui icons
@@ -9,11 +9,14 @@ import OutlinedFlagSharpIcon from '@mui/icons-material/OutlinedFlagSharp';
 function FeedbackItem({feedback, fetchData}) {
 
     const dispatch = useDispatch();
+    const editView = useSelector((store)=>store.editViewReducer); 
+
 
     //sends info to reducer so that dialog will open 
     //and store ID for feedback to delete
     const handleDelete = () => {
-        
+        dispatch({type: 'OPEN_DIALOG'})
+        dispatch({type: 'DELETE_ID', payload: feedback.id})
     }
     const handleFlag = () => {
         let id = feedback.id
@@ -29,12 +32,12 @@ function FeedbackItem({feedback, fetchData}) {
 
     return(
         <tr key={feedback.id} className={(feedback.flagged) ? "flagged" : "" }>
-            <td className={(feedback.feeling<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.feeling}</td>
-            <td className={(feedback.understanding<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.understanding}</td>
-            <td className={(feedback.support<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.support}</td>
-            <td>{feedback.comments}</td>
-            <td><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>
-            <td><Button variant="text" onClick={handleFlag}><OutlinedFlagSharpIcon /></Button></td>
+                    <td className={(feedback.feeling<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.feeling}</td>
+                    <td className={(feedback.understanding<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.understanding}</td>
+                    <td className={(feedback.support<5 ) ? "highlighted" : "" }>{feedback.support}</td>
+                    <td>{feedback.comments}</td>
+                    {editView && <td><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>}
+                    {editView && <td><Button variant="text" onClick={handleFlag}><OutlinedFlagSharpIcon /></Button></td>}
         </tr>
     )
 }

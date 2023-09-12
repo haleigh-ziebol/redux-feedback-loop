@@ -30,7 +30,7 @@ app.post('/feedback',  (req, res) => {
 
 //GET
 app.get('/feedbacklist',  (req, res) => {
-  let queryText = `SELECT * FROM "feedback" ORDER BY "flagged" DESC;`;
+  let queryText = `SELECT * FROM "feedback";`;
   pool.query(queryText)
     .then(result => {
       res.send(result.rows);

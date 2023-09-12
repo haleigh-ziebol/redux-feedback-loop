@@ -67,6 +67,13 @@ const deleteDialogReducer = (state = false, action) => {
   }
   return state;
 }
+
+const editViewReducer = (state = false, action) => {
+  if(action.type === 'TOGGLE_EDIT') {
+    return !state
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -79,7 +86,8 @@ const deleteDialogReducer = (state = false, action) => {
         feedbackReducer,
         goBackReducer,
         deleteIDReducer,
-        deleteDialogReducer
+        deleteDialogReducer,
+        editViewReducer
       }
     ),
     applyMiddleware(logger)

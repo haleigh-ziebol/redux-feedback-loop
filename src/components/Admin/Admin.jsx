@@ -12,7 +12,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid';
 
 function Admin(){
     const axios = Axios;
@@ -45,7 +44,15 @@ function Admin(){
       dispatch({type: 'CLOSE_DIALOG'})
     }//end dialog
 
-    //handle delete
+    //edit mode
+    const editView = useSelector((store)=>store.editViewReducer); 
+    
+    const toggleEdit = () => {
+        dispatch({type: 'TOGGLE_EDIT'});
+        fetchData();
+    } // end edit mode
+
+    //for handle delete
     const IDtoDelete = useSelector((store)=>store.deleteIDReducer); 
 
     const handleDelete = () => {
@@ -60,7 +67,8 @@ function Admin(){
         .catch((error) => {
         console.log(error)
         })
-      }
+    } //end handleDelete
+
 
     //runs fetchData & openDialog
     useEffect(() => {
@@ -70,6 +78,7 @@ function Admin(){
         }
 
     }, [dialogOpen])
+
 
     return(
         <div>
@@ -97,20 +106,25 @@ function Admin(){
             <br/>
             {
                 (feedbackList.length ==0) ?
-
-                <p>No feedback currently! Check back later.</p> :
+                <div>
+                    <p>No feedback currently! Check back later.</p>
+                </div> :
 
                 <div>
+                        <div className="table-header">
+                            <h1>Feedback</h1>
+                            <Button onClick={toggleEdit}>Edit</Button>
+                        </div>
+
                     <table>
-                        <caption>Feedback</caption>
                         <thead>
                             <tr>
                                 <th>Feeling</th>
                                 <th>Understanding</th>
                                 <th>Support</th>
                                 <th>Comments</th>
-                                <th>Delete</th>
-                                <th>Flag</th>
+                                {editView && <th>Delete</th>}
+                                {editView && <th>Flag</th>}
                             </tr>
                         </thead>
                         <tbody>

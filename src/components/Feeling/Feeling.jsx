@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
 
 //box style
 const style = {

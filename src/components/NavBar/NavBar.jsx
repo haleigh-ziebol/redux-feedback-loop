@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 
 //import Components
 import Home from '../Home/Home';
 import Admin from '../Admin/Admin';
+
+//MUI components
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import HomeIcon from '@mui/icons-material/Home';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 function NavBar() {
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
@@ -20,12 +24,12 @@ function NavBar() {
             <Tabs
                 value={currentTabIndex}
                 onChange={handleTabChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                aria-label="secondary tabs example"
+                textColor="primary"
+                indicatorColor="primary"
+                aria-label="primary tabs example"
             >
-                <Tab value='0' label="Home" />
-                <Tab value='1' label="Admin" />
+                <Tab value='0' icon={<HomeIcon />}/>
+                <Tab value='1' icon={<AdminPanelSettingsIcon/>} />
             </Tabs>
         </Box>
         {currentTabIndex ==='0' && (
