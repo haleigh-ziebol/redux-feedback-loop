@@ -47,6 +47,10 @@ tbody tr:nth-child(even) {
   background-color: #eee;
 }
 
+.highlighted{
+  background-color: #FFFFE0;
+}
+
 .flagged{
-  background-color: #FFCCCB;
+  background-color: #FFCCCB !important;
 }

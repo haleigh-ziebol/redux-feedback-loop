@@ -110,12 +110,13 @@ function Admin(){
                                 <th>Support</th>
                                 <th>Comments</th>
                                 <th>Delete</th>
+                                <th>Flag</th>
                             </tr>
                         </thead>
                         <tbody>
                             {feedbackList.map((feedback) => {
                                 return (
-                                    <FeedbackItem feedback={feedback} />
+                                    <FeedbackItem feedback={feedback} fetchData={fetchData} />
                                 )
                             })}
                         </tbody>

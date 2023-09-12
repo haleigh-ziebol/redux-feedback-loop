@@ -30,7 +30,7 @@ app.post('/feedback',  (req, res) => {
 
 //GET
 app.get('/feedbacklist',  (req, res) => {
-  let queryText = `SELECT * FROM "feedback";`;
+  let queryText = `SELECT * FROM "feedback" ORDER BY "flagged" DESC;`;
   pool.query(queryText)
     .then(result => {
       res.send(result.rows);
@@ -54,6 +54,20 @@ app.delete('/feedback/:id', (req, res) => {
       res.sendStatus(500);
   })
 }); //end DELETE
+
+// PUT
+app.put('/feedback/:id', (req, res) => {
+  let id = req.params.id;
+  let queryText = `UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;`;
+  pool.query(queryText, [id]) //corresponds to $1
+  .then((result) =>{
+      res.sendStatus(200);
+  })
+  .catch((err) => {
+      console.log(`Error making query ${queryText}`, err);
+      res.sendStatus(500)
+  })
+})// end PUT
 
 
 /** ---------- START SERVER ---------- **/
