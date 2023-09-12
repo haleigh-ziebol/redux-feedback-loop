@@ -29,6 +29,17 @@ function Admin(){
         })
     }
 
+    //fetch notification number for flagged feedback
+    const fetchFlagged= () => {
+        axios.get('/flagged')
+        .then((response) =>{
+        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
+        })
+        .catch((error) => {
+        console.log(error)
+        })
+    } /// end fetchFlagged
+
     //dialog
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
@@ -72,7 +83,8 @@ function Admin(){
 
     //runs fetchData & openDialog
     useEffect(() => {
-        fetchData(); //run when page loads
+        fetchData();
+        fetchFlagged(); //run when page loads
         if(dialogOpen) {
             openDialog();
         }
@@ -130,7 +142,7 @@ function Admin(){
                         <tbody>
                             {feedbackList.map((feedback) => {
                                 return (
-                                    <FeedbackItem feedback={feedback} fetchData={fetchData} />
+                                    <FeedbackItem feedback={feedback} fetchData={fetchData} fetchFlagged={fetchFlagged} />
                                 )
                             })}
                         </tbody>

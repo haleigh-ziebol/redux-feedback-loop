@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 
 //import Components
 import Home from '../Home/Home';
@@ -10,6 +11,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import Badge from '@mui/material/Badge';
 
 function NavBar() {
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
@@ -17,6 +19,8 @@ function NavBar() {
     const handleTabChange = (e,value) => {
         setCurrentTabIndex(value);
     };
+
+    const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
 
   return (
     <div>
@@ -29,7 +33,13 @@ function NavBar() {
                 aria-label="primary tabs example"
             >
                 <Tab value='0' icon={<HomeIcon />}/>
-                <Tab value='1' icon={<AdminPanelSettingsIcon/>} />
+                <Tab value='1' 
+                icon={(flaggedCount>0)?
+                     (<Badge badgeContent={flaggedCount} color="secondary">
+                        <AdminPanelSettingsIcon color="action" />
+                    </Badge>)
+                    :<AdminPanelSettingsIcon/>
+                } />
             </Tabs>
         </Box>
         {currentTabIndex ==='0' && (

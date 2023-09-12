@@ -74,6 +74,13 @@ const editViewReducer = (state = false, action) => {
   }
   return state;
 }
+
+const flaggedNotificationReducer = (state = '', action) => {
+  if(action.type === 'UPDATE_FLAGGED') {
+    return action.payload
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -87,7 +94,8 @@ const editViewReducer = (state = false, action) => {
         goBackReducer,
         deleteIDReducer,
         deleteDialogReducer,
-        editViewReducer
+        editViewReducer,
+        flaggedNotificationReducer
       }
     ),
     applyMiddleware(logger)

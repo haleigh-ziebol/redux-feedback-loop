@@ -41,6 +41,20 @@ app.get('/feedbacklist',  (req, res) => {
     });
 }); //end GET
 
+//GET
+app.get('/flagged',  (req, res) => {
+  let queryText = `SELECT COUNT(*) FILTER (WHERE "flagged")
+  from "feedback";`;
+  pool.query(queryText)
+    .then(result => {
+      res.send(result.rows[0]);
+    })
+    .catch(error => {
+      console.log(`Error adding new book`, error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
 // DELETE
 app.delete('/feedback/:id', (req, res) => {
   let id = req.params.id;

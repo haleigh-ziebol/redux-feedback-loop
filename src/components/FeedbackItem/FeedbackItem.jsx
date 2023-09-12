@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import OutlinedFlagSharpIcon from '@mui/icons-material/OutlinedFlagSharp';
 
-function FeedbackItem({feedback, fetchData}) {
+function FeedbackItem({feedback, fetchData, fetchFlagged}) {
 
     const dispatch = useDispatch();
     const editView = useSelector((store)=>store.editViewReducer); 
@@ -24,6 +24,7 @@ function FeedbackItem({feedback, fetchData}) {
         .then((response) =>{
         console.log(response.data);
         fetchData();
+        fetchFlagged();
         })
         .catch((error) => {
         console.log(error)
