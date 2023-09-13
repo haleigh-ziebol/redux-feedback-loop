@@ -63,6 +63,7 @@ function Admin({fetchFlagged}){
         .then((response) =>{
         console.log(response.data);
         fetchData();
+        fetchFlagged();
         handleClose();
         })
         .catch((error) => {
@@ -97,7 +98,7 @@ function Admin({fetchFlagged}){
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleClose}>Nope!</Button>
+                <Button onClick={handleClose}>Nope</Button>
                 <Button onClick={handleDelete} autoFocus>
                     Yee haw!
                 </Button>
