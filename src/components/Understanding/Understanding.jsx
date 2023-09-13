@@ -39,7 +39,7 @@ function Understanding() {
 
     useEffect(() => {
         setStoredResponse(); //run when page loads
-      }, [])
+    }, [])
 
     // Called when the submit button is pressed
     const handleSubmit = (e) => {

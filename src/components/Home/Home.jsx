@@ -5,7 +5,9 @@ import {useHistory} from 'react-router-dom';
 import Button from '@mui/material/Button'
 
 function Home(){
+    
     const history = useHistory();
+
     return(
         <div>
             <div>

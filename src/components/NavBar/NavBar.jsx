@@ -15,6 +15,7 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Badge from '@mui/material/Badge';
 
 function NavBar() {
+    
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
 
     const handleTabChange = (e,value) => {
@@ -39,7 +40,6 @@ function NavBar() {
     useEffect(() => {
         fetchFlagged()
     }, [])
-
 
   return (
     <div>
@@ -70,5 +70,6 @@ function NavBar() {
         
     </div>
   );
+
 }
 export default NavBar;

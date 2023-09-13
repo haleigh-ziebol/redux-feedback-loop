@@ -24,6 +24,7 @@ const style = {
 function Support() {
 
     const [support, setSupport] = useState('');
+    
     const useStoredResponse = useSelector((store)=>store.goBackReducer);
     const storedSupport = useSelector((store)=>store.supportReducer);
 
@@ -39,7 +40,7 @@ function Support() {
 
     useEffect(() => {
         setStoredResponse(); //run when page loads
-      }, [])
+    }, [])
 
     // Called when the submit button is pressed
     const handleSubmit = (e) => {

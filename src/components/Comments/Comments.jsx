@@ -71,7 +71,7 @@ function Comments() {
         setOpen(false);
         history.push('/');
         dispatch({type: 'EXIT_BACK'})
-    }
+    }//end Modal
 
     return (
         <div>

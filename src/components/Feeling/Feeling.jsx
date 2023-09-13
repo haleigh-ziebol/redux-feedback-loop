@@ -55,14 +55,13 @@ function Feeling() {
         history.push('/understanding')
     }
 
-
     //Modal
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
         history.push('/');
         dispatch({type: 'EXIT_BACK'})
-    }
+    }//end Modal
 
     return (
         <div>

@@ -9,15 +9,16 @@ import OutlinedFlagSharpIcon from '@mui/icons-material/OutlinedFlagSharp';
 function FeedbackItem({feedback, fetchData, fetchFlagged}) {
 
     const dispatch = useDispatch();
+
     const editView = useSelector((store)=>store.editViewReducer); 
 
-
-    //sends info to reducer so that dialog will open 
-    //and store ID for feedback to delete
+    //sends id to reducer & opens dialog
     const handleDelete = () => {
         dispatch({type: 'OPEN_DIALOG'})
         dispatch({type: 'DELETE_ID', payload: feedback.id})
     }
+
+    //updates flagged status
     const handleFlag = () => {
         let id = feedback.id
         axios.put(`/feedback/${id}`)
@@ -41,5 +42,6 @@ function FeedbackItem({feedback, fetchData, fetchFlagged}) {
                     {editView && <td><Button variant="text" onClick={handleFlag}><OutlinedFlagSharpIcon /></Button></td>}
         </tr>
     )
+    
 }
 export default FeedbackItem;

@@ -25,12 +25,13 @@ const style = {
 function EditRaw() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+    const axios = Axios;
+
     const feelingStored = useSelector((store)=>store.feelingReducer);
     const understandingStored = useSelector((store)=>store.understandingReducer);
     const supportStored = useSelector((store)=>store.supportReducer);
     const commentsStored = useSelector((store)=>store.commentReducer);
-    const axios = Axios;
-    const dispatch = useDispatch();
 
     //for inputs
     const [feeling, setFeeling] = useState(feelingStored);
@@ -61,7 +62,7 @@ function EditRaw() {
         setOpen(false);
         history.push('/')
         dispatch({type: 'EXIT_BACK'})
-    }
+    } //end Modal
 
     return (
         <div>
