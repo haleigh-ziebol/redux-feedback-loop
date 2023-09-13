@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 //import Components
 import Home from '../Home/Home';
@@ -21,6 +22,24 @@ function NavBar() {
     };
 
     const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
+    const dispatch = useDispatch();
+
+    //fetch notification number for flagged feedback
+    const fetchFlagged= () => {
+        axios.get('/flagged')
+        .then((response) =>{
+        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
+        })
+        .catch((error) => {
+        console.log(error)
+        })
+    } /// end fetchFlagged
+
+    //runs fetchFlagged
+    useEffect(() => {
+        fetchFlagged()
+    }, [])
+
 
   return (
     <div>
@@ -46,7 +65,7 @@ function NavBar() {
             <Home />
         )}
         {currentTabIndex ==='1' && (
-            <Admin />
+            <Admin fetchFlagged={fetchFlagged} />
         )}
         
     </div>

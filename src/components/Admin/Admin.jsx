@@ -13,7 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-function Admin(){
+function Admin({fetchFlagged}){
     const axios = Axios;
     const [feedbackList, setFeedbackList] = useState([]);  
 
@@ -28,17 +28,6 @@ function Admin(){
         console.log(error)
         })
     }
-
-    //fetch notification number for flagged feedback
-    const fetchFlagged= () => {
-        axios.get('/flagged')
-        .then((response) =>{
-        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
-        })
-        .catch((error) => {
-        console.log(error)
-        })
-    } /// end fetchFlagged
 
     //dialog
     const [open, setOpen] = useState(false);
@@ -84,7 +73,6 @@ function Admin(){
     //runs fetchData & openDialog
     useEffect(() => {
         fetchData();
-        fetchFlagged(); //run when page loads
         if(dialogOpen) {
             openDialog();
         }
