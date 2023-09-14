@@ -3,6 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 
+//password encryption
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -88,3 +92,44 @@ app.put('/feedback/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);
 });
+
+//**endpoints
+// sign up
+app.post('/signup', async(req, res) => {
+  const { email, password } = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+  try {
+    const signUp = await pool.query(`INSERT INTO "users" ("email", "hashed_password") VALUES($1, $2);`, [email, hashedPassword])
+    const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
+    res.json({ email, token })
+  }
+  catch(err) {
+    console.error(err);
+    if (err) {
+      res.json({ detail: err.detail})
+    }
+  }
+}) // end sign up
+
+// login
+app.post('/login', async(req, res) => {
+  const { email, password } = req.body
+  try {
+    const users = await pool.query(`SELECT * FROM "users" where "email" =$1`, [email])
+    if (!users.rows.length){
+      return res.json({detail: 'User does not exist!'})
+    }
+    const success = await bcrypt.compare(password, users.rows[0].hashed_password)
+    if(success) {
+      res.json({email: users.rows[0].email, token})
+      const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' });
+    }
+    else{
+      return res.json({detail: 'Login failed.'})
+    }
+  }
+  catch(err) {
+    console.error(err)
+  }
+}) //end login

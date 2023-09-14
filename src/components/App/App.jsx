@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {HashRouter as Router, Route} from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 //import components
 import Feeling from '../Feeling/Feeling';
@@ -8,7 +9,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import Submitted from '../Submitted/Submitted';
-import NavBar from '../NavBar/NavBar';
+import UserBar from '../UserBar/UserBar'
 import EditRaw from '../EditRaw/EditRaw';
 
 
@@ -17,6 +18,10 @@ import './App.css';
 
 function App() {
 
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const userEmail = cookies.Email;
+  const authToken = cookies.AuthToken
+
   return (
     <Router>
       <div className='App'>
@@ -24,7 +29,7 @@ function App() {
           <h1 className='App-title'>Feedback!</h1>
         </header>
         <div>
-          <NavBar />
+          <UserBar />
         </div>
       </div>
 
