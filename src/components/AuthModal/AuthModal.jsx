@@ -20,32 +20,56 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
+
+//code from Ania Kubow Todo App Tutorial
 
 function AuthModal() {
 
-    const [userEmail, setUserEmail] = useState('');
+    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [cookies, setCookie, removeCookie] = useCookies(null)
+
+    const loginMode = useSelector((store)=>store.loginModalReducer);
     
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const loginMode = useSelector((store)=>store.loginModalReducer);
-
-
+    // set login vs sign up
+    const viewLogin = (status) => {
+        if(status){
+            dispatch({type: 'SET_LOGIN'});
+            setError(null);
+        }
+        else if (!status) {
+            dispatch({type: 'SET_SIGNUP'}); 
+            setError(null);
+        }
+    }
 
     // Called when the submit button is pressed
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e, endpoint) => {
         e.preventDefault();
-        dispatch(
-            {
-            type: 'INPUT_FEELING', 
-            payload: feeling
-            }
-        );
-        setFeeling('');
-        history.push('/understanding')
+        if (!isLogin && password !== confirmPassword) {
+            setError('Make sure passwords match!')
+            return
+        }
+        const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endpoint}`, {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({email, password})
+        })
+        const data = await response.json()
+        if (data.detail){
+            setError(data.detail)
+        }
+        else {
+            setCookie('Email', data.email);
+            setCookie('AuthToken', data.token)
+            //reload
+        }
     }
 
     //Modal
@@ -68,12 +92,11 @@ function AuthModal() {
                         <div>
                             <Button variant ="text" onClick={handleClose}>Exit</Button>
                         </div>
-                        {!loginMode && <h1>Sign up!</h1>}
-                        {loginMode && <h1>Log in!</h1>}
-                        <form onSubmit={handleSubmit}>
+                        <h2>{loginMode ? 'Please log in' : 'Please sign up'}</h2>
+                        <form onSubmit={(e) => handleSubmit(e,loginMode ? 'login' : 'signup')}>
                             <label htmlFor="email">Email Address:</label>
                             <input type="text" id ="email" 
-                                value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} 
+                                value={email} onChange={(e)=>setEmail(e.target.value)} 
                                 placeholder="email address" required 
                             />
                             <br/>
@@ -98,8 +121,13 @@ function AuthModal() {
                             }
                             <div >
                                 <Button variant="contained" type="submit">Next</Button>
+                                {error && <p>{error}</p>}
                             </div>
                         </form>
+                        <div>
+                            <button onClick={() => viewLogin(false)}>Sign up</button>
+                            <button onClick={() => viewLogin(true)}>Log in</button>
+                        </div>
                     </Stack>
                 </Box>
             </Modal>

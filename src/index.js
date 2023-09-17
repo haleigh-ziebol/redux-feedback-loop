@@ -86,6 +86,9 @@ const loginModalReducer = (state = true, action) => {
   if(action.type === 'SET_SIGNUP') {
     return false //meaning not logging in; signing up
   }
+  else if(action.type === 'SET_LOGIN') {
+    return true //log in
+  }
   return state;
 }
   

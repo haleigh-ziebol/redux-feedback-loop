@@ -11,7 +11,7 @@ import Review from '../Review/Review';
 import Submitted from '../Submitted/Submitted';
 import UserBar from '../UserBar/UserBar'
 import EditRaw from '../EditRaw/EditRaw';
-import LoginModal from '../AuthModal/LoginModal';
+import LoginModal from '../AuthModal/AuthModal';
 
 
 //import styling
