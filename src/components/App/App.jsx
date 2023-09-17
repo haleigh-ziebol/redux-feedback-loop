@@ -11,7 +11,7 @@ import Review from '../Review/Review';
 import Submitted from '../Submitted/Submitted';
 import UserBar from '../UserBar/UserBar'
 import EditRaw from '../EditRaw/EditRaw';
-import LoginModal from '../AuthModal/AuthModal';
+import AuthModal from '../AuthModal/AuthModal';
 
 
 //import styling
@@ -21,7 +21,7 @@ function App() {
 
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const userEmail = cookies.Email;
-  const authToken = cookies.AuthToken
+  const authToken = cookies.AuthToken;
 
   return (
     <Router>
@@ -35,15 +35,40 @@ function App() {
       </div>
 
       {/* routes for feedback */}
-      <Route path='/feeling' exact>
-        <Feeling />
-      </Route>
-      <Route path='/understanding' exact>
-        <Understanding />
-      </Route>
-      <Route path='/support' exact>
-        <Support />
-      </Route>
+      <Route path='/feeling' exact element ={
+        cookies ? (
+            <Feeling />
+          ): (
+            <Navigate replace to={'/'} />
+          )
+        }
+      />
+
+      <Route path='/understanding' exact element ={
+        cookies ? (
+            <Understanding />
+          ): (
+            <Navigate replace to={'/'} />
+          )
+        }
+      />
+
+      <Route path='/support' exact element ={
+        cookies ? (
+            <Support />
+          ): (
+            <Navigate replace to={'/'} />
+          )
+        }
+      />
+      <Route path='/comments' exact element ={
+        cookies ? (
+            <Comments />
+          ): (
+            <Navigate replace to={'/'} />
+          )
+        }
+      />
       <Route path='/comments' exact>
         <Comments />
       </Route>
@@ -59,7 +84,7 @@ function App() {
 
       {/* routes for login & auth */}
       <Route path='/entersite' exact>
-        <LoginModal />
+        <AuthModal />
       </Route>
 
     </Router>

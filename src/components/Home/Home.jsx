@@ -1,12 +1,24 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 //MUI components
 import Button from '@mui/material/Button'
 
 function Home(){
+
+    const handleSubmit = () => {
+        if (cookies) {
+            history.push('/feeling')
+        }
+        else {
+            history.push('/entersite')
+        }
+    }
     
+    const [cookies, setCookie, removeCookie] = useCookies(null);
     const history = useHistory();
+    
 
     return(
         <div>
@@ -16,7 +28,7 @@ function Home(){
             </div>
             <br/>
             <div>
-                <Button variant="contained" onClick={()=>history.push('/feeling')}>Submit Feedback </Button>
+                <Button variant="contained" onClick={handleSubmit}>Submit Feedback </Button>
             </div>
         </div>
     )

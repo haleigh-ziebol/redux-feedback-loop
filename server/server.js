@@ -122,7 +122,7 @@ app.post('/feedback/signup', async (req, res) => {
 
 });//end POST
 
-//login
+//POST login
 app.post('/feedback/login', async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;

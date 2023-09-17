@@ -21,7 +21,7 @@ function LoginButtons() {
         removeCookie('Email');
         removeCookie('AuthToken');
         history.push('/');
-        //refresh
+        window.location.reload;
     }
 
     const handleSignup = () => {
@@ -29,6 +29,8 @@ function LoginButtons() {
         history.push('/entersite');
 
     }
+
+    
 
     return(
         <div className="login-bar">
