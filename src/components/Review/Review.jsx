@@ -32,9 +32,11 @@ function Review() {
     const understanding = useSelector((store)=>store.understandingReducer);
     const support = useSelector((store)=>store.supportReducer);
     const comments = useSelector((store)=>store.commentReducer);
-
+    const userEmail = 'test@test.com';
+    
     const handleSubmit = () => {
         let newFeedback = {
+                userEmail: userEmail,
                 feeling: feeling,
                 understanding: understanding,
                 support: support,

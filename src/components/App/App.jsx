@@ -11,6 +11,7 @@ import Review from '../Review/Review';
 import Submitted from '../Submitted/Submitted';
 import UserBar from '../UserBar/UserBar'
 import EditRaw from '../EditRaw/EditRaw';
+import LoginModal from '../AuthModal/LoginModal';
 
 
 //import styling
@@ -33,7 +34,7 @@ function App() {
         </div>
       </div>
 
-      {/* set routes for parts of form */}
+      {/* routes for feedback */}
       <Route path='/feeling' exact>
         <Feeling />
       </Route>
@@ -54,6 +55,11 @@ function App() {
       </Route>
       <Route path='/edit' exact>
         <EditRaw />
+      </Route>
+
+      {/* routes for login & auth */}
+      <Route path='/entersite' exact>
+        <LoginModal />
       </Route>
 
     </Router>

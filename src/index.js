@@ -45,7 +45,7 @@ const goBackReducer = (state = false, action) => {
   if(action.type === 'UPDATE') {
     return true
   }
-  if(action.type === 'EXIT_BACK') {
+  else if(action.type === 'EXIT_BACK') {
     return false
   }
   return state;
@@ -81,6 +81,13 @@ const flaggedNotificationReducer = (state = '', action) => {
   }
   return state;
 }
+
+const loginModalReducer = (state = true, action) => {
+  if(action.type === 'SET_SIGNUP') {
+    return false //meaning not logging in; signing up
+  }
+  return state;
+}
   
   const storeInstance = createStore(
     // reducers,
@@ -95,7 +102,8 @@ const flaggedNotificationReducer = (state = '', action) => {
         deleteIDReducer,
         deleteDialogReducer,
         editViewReducer,
-        flaggedNotificationReducer
+        flaggedNotificationReducer,
+        loginModalReducer
       }
     ),
     applyMiddleware(logger)

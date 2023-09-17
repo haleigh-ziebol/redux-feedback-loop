@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
+//code from Ania Kubo tutorial Todo App
 function Auth() {
     
     const [isLogin, setIsLogin] = useState(false);
@@ -12,7 +13,7 @@ function Auth() {
 
     const viewLogin = (status) => {
         setError(null);
-        setIsLogin(status)
+        setIsLogin(status);
     }
 
 
@@ -50,8 +51,8 @@ function Auth() {
                     {error && <p>{error}</p>}
                 </form>
                 <div>
-                    <button onClick={viewLogin(false)}>Sign up</button>
-                    <button onClick={viewLogin(true)}>Log in</button>
+                    <button onClick={() => viewLogin(false)}>Sign up</button>
+                    <button onClick={() => viewLogin(true)}>Log in</button>
                 </div>
             </div>
         </div>

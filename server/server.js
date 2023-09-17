@@ -16,13 +16,13 @@ const pool = require('./modules/pool');
 
 /** ---------- EXPRESS ROUTES ---------- **/
 
-//POST
-app.post('/feedback',  (req, res) => {
+//POST new feedback
+app.post('/feedback/',  (req, res) => {
     let newFeedback = req.body;
     console.log(`Adding feedback`, newFeedback);
-    let queryText = `INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-    VALUES ($1, $2, $3, $4);`;
-    pool.query(queryText, [newFeedback.feeling, newFeedback.understanding, newFeedback.support, newFeedback.comments])
+    let queryText = `INSERT INTO "feedback" ("userEmail", "feeling", "understanding", "support", "comments")
+    VALUES ($1, $2, $3, $4, $5);`;
+    pool.query(queryText, [newFeedback.userEmail, newFeedback.feeling, newFeedback.understanding, newFeedback.support, newFeedback.comments])
       .then(result => {
         res.sendStatus(201);
       })
@@ -32,7 +32,22 @@ app.post('/feedback',  (req, res) => {
       });
 });//end POST
 
-//GET
+//GET for user
+app.get('/userfeedback/:userEmail',  (req, res) => {
+  const userEmail = req.params.userEmail
+  let queryText = `SELECT * FROM "feedback" WHERE "user_email" =$1;`;
+  pool.query(queryText, [userEmail])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log(`Error adding new book`, error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
+
+//GET for admin
 app.get('/feedbacklist',  (req, res) => {
   let queryText = `SELECT * FROM "feedback";`;
   pool.query(queryText)
@@ -45,7 +60,7 @@ app.get('/feedbacklist',  (req, res) => {
     });
 }); //end GET
 
-//GET
+//GET for flagged
 app.get('/flagged',  (req, res) => {
   let queryText = `SELECT COUNT(*) FILTER (WHERE "flagged")
   from "feedback";`;

@@ -1,5 +1,5 @@
 import NavBar from '../NavBar/NavBar';
-import Login from '../Login/Login';
+import LoginButtons from '../LoginButtons/LoginButtons';
 
 import Stack from '@mui/material/Stack';
 
@@ -10,7 +10,7 @@ function UserBar(){
         <div>
             <Stack direction="row" justifyContent="space-between">
                 <NavBar />
-                <Login />
+                <LoginButtons />
             </Stack>
         </div>
     )
