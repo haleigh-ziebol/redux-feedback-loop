@@ -82,7 +82,7 @@ const flaggedNotificationReducer = (state = '', action) => {
   return state;
 }
 
-const loginModalReducer = (state = true, action) => {
+const loggingInReducer = (state = true, action) => {
   if(action.type === 'SET_SIGNUP') {
     return false //meaning not logging in; signing up
   }
@@ -106,7 +106,7 @@ const loginModalReducer = (state = true, action) => {
         deleteDialogReducer,
         editViewReducer,
         flaggedNotificationReducer,
-        loginModalReducer
+        loggingInReducer
       }
     ),
     applyMiddleware(logger)

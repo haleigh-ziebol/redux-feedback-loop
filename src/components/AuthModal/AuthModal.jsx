@@ -32,10 +32,12 @@ function AuthModal() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(null)
 
-    const loginMode = useSelector((store)=>store.loginModalReducer);
-    
+    const loginMode = useSelector((store)=>store.loggingInReducer);
+
     const history = useHistory();
     const dispatch = useDispatch();
+
+    console.log(cookies)
 
     // set login vs sign up
     const viewLogin = (status) => {
@@ -52,24 +54,26 @@ function AuthModal() {
     // Called when the submit button is pressed
     const handleSubmit = async (e, endpoint) => {
         e.preventDefault();
-        if (!isLogin && password !== confirmPassword) {
+        if (!loginMode && password !== confirmPassword) {
             setError('Make sure passwords match!')
             return
         }
-        const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endpoint}`, {
+        const response = await fetch (`/feedback/${endpoint}`, {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({email, password})
         })
         const data = await response.json()
-        if (data.detail){
-            setError(data.detail)
-        }
-        else {
-            setCookie('Email', data.email);
-            setCookie('AuthToken', data.token)
-            //reload
-        }
+            if (data.detail){
+                setError(data.detail)
+            }
+            else {
+                setCookie('Email', data.email);
+                setCookie('AuthToken', data.token)
+                window.location.reload
+                setOpen(false);
+                history.push('/');
+            }
     }
 
     //Modal
@@ -93,6 +97,7 @@ function AuthModal() {
                             <Button variant ="text" onClick={handleClose}>Exit</Button>
                         </div>
                         <h2>{loginMode ? 'Please log in' : 'Please sign up'}</h2>
+                        
                         <form onSubmit={(e) => handleSubmit(e,loginMode ? 'login' : 'signup')}>
                             <label htmlFor="email">Email Address:</label>
                             <input type="text" id ="email" 
@@ -120,13 +125,15 @@ function AuthModal() {
                             </div>
                             }
                             <div >
-                                <Button variant="contained" type="submit">Next</Button>
+                                <Button variant="contained" type="submit">Submit</Button>
                                 {error && <p>{error}</p>}
                             </div>
                         </form>
+                        <br/>
                         <div>
-                            <button onClick={() => viewLogin(false)}>Sign up</button>
-                            <button onClick={() => viewLogin(true)}>Log in</button>
+                            <p>Set Mode:</p>
+                            <Button variant="text" onClick={() => viewLogin(false)}>Sign up</Button>
+                            <Button variant="text" onClick={() => viewLogin(true)}>Log in</Button>
                         </div>
                     </Stack>
                 </Box>

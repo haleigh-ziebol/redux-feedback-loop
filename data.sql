@@ -23,3 +23,7 @@ CREATE TABLE "users" (
   "hashed_password" VARCHAR(255),
   "admin" boolean default false
 );
+
+--Admin
+INSERT INTO "users" ("email", "hashed_password")
+VALUES ('admin@admin.com', )

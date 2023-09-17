@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 //MUI components
 import Box from '@mui/material/Box';
@@ -32,7 +33,9 @@ function Review() {
     const understanding = useSelector((store)=>store.understandingReducer);
     const support = useSelector((store)=>store.supportReducer);
     const comments = useSelector((store)=>store.commentReducer);
-    const userEmail = 'test@test.com';
+   
+    const [cookies, setCookie, removeCookie] = useCookies(null);
+    const userEmail = cookies.Email;
     
     const handleSubmit = () => {
         let newFeedback = {
@@ -49,7 +52,7 @@ function Review() {
         })
         .catch(error => {
           console.log(error);
-          alert('Sorry cannot add book')
+          alert('Sorry cannot add feedback')
         })
     }
 
