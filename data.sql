@@ -24,6 +24,6 @@ CREATE TABLE "users" (
   "admin" boolean default false
 );
 
---Admin
-INSERT INTO "users" ("email", "hashed_password")
-VALUES ('admin@admin.com', )
+--Admin **password is 11**
+INSERT INTO "users" ("email", "hashed_password", "admin")
+VALUES ('admin@admin.com', '$2b$10$bz/QeEuR5aqkIRPNwYbw2ua66GgdYi63Pvli0.RkVXzalnSAr6VtC', true )

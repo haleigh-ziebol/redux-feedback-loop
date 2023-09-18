@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 //import Components
 import Home from '../Home/Home';
-import Admin from '../Admin/Admin';
+import AdminOrUser from '../AdminOrUser/AdminOrUser';
 
 //MUI components
 import Tabs from '@mui/material/Tabs';
@@ -15,39 +15,19 @@ import Box from '@mui/material/Box';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Badge from '@mui/material/Badge';
-import UsersFeedback from '../UsersFeedback/UsersFeedback';
 
 function NavBar() {
     
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
     const [cookies, setCookie, removeCookie] = useCookies(null);
     const authToken = cookies.AuthToken;
-    const admin = cookies.admin;
     const history = useHistory();
+
+    const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
 
     const handleTabChange = (e,value) => {
         setCurrentTabIndex(value);
     };
-
-    //flagged
-    const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
-    const dispatch = useDispatch();
-
-    //fetch notification number for flagged feedback
-    const fetchFlagged= () => {
-        axios.get('/flagged')
-        .then((response) =>{
-        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
-        })
-        .catch((error) => {
-        console.log(error)
-        })
-    } /// end fetchFlagged
-
-    //runs fetchFlagged
-    useEffect(() => {
-        fetchFlagged()
-    }, [cookies]) //end flagged
 
   return (
     <div>
@@ -76,12 +56,10 @@ function NavBar() {
             history.push('/entersite'),
             setCurrentTabIndex('0')
         )}
-        {(currentTabIndex ==='1' && !admin && authToken) && (
-            <UsersFeedback />
+        {(currentTabIndex ==='1' && authToken) && (
+            <AdminOrUser />
         )}
-        {(currentTabIndex ==='1' && admin && authToken) && (
-            <Admin fetchFlagged={fetchFlagged} />
-        )} 
+
     </div>
   );
 

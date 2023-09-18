@@ -70,7 +70,6 @@ function AuthModal() {
             else {
                 setCookie('Email', data.email);
                 setCookie('AuthToken', data.token)
-                setCookie('admin', data.admin)
                 window.location.reload
                 setOpen(false);
                 history.push('/');

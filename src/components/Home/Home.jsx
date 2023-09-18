@@ -24,14 +24,21 @@ function Home(){
 
     return(
         <div>
-            <div>
-                <h1>Help us help you!</h1>
-                <h3>Your feedback informs our teaching! We want you to succeed!</h3>
+            { (userEmail == 'admin@')
+            ? <div>
+                <h1>Hey Admin</h1>
             </div>
-            <br/>
-            <div>
-                <Button variant="contained" onClick={handleSubmit}>Submit Feedback </Button>
-            </div>
+            : <div>
+                    <div>
+                        <h1>Help us help you!</h1>
+                        <h3>Your feedback informs our teaching! We want you to succeed!</h3>
+                    </div>
+                    <br/>
+                    <div>
+                        <Button variant="contained" onClick={handleSubmit}>Submit Feedback </Button>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

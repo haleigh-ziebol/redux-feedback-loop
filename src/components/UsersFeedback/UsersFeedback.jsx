@@ -2,9 +2,6 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
-//import components
-import AuthModal from "../AuthModal/AuthModal";
-
 //code from Ania Kubow To Do App Demo
 
 function UsersFeedback() {
@@ -14,27 +11,60 @@ function UsersFeedback() {
     const authToken = cookies.AuthToken;
 
     const [feedback, setFeedback] = useState([]);
+    console.log(feedback)
 
-    const feedbackList = async () => {
-        try {
-            const response = await axios.get(`userfeedback/${userEmail}`);
-            const json = await response.json();
-        } catch (err) {
-            console.error(err);
-        }
+
+    //fetch feedback list
+    const fetchData = () => {
+        axios.get(`userfeedback/${userEmail}`)
+        .then((response) =>{
+        console.log(response.data);
+        setFeedback(response.data);
+        })
+        .catch((error) => {
+        console.log(error)
+        })
     }
+
     useEffect ( () => {
         if (authToken) {
-            feedbackList()
+            fetchData();
         }}
         , [])
 
     return(
 
         <div>
-            {!authToken && <AuthModal/>}
-            {authToken &&
-            <div> <p>insert list here</p> </div>
+
+            {(feedback == null)
+            ? <p>no feedback entered</p>
+            : <div>
+                <div className="table-header">
+                    <h1>Feedback</h1>
+                </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feeling</th>
+                                <th>Understanding</th>
+                                <th>Support</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {feedback.map((feedback) => {
+                                return (
+                                    <tr key={feedback.id}>
+                                        <td >{feedback.feeling}</td>
+                                        <td >{feedback.understanding}</td>
+                                        <td >{feedback.support}</td>
+                                        <td>{feedback.comments}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                 </div>
             }
         </div>
     )

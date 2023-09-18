@@ -107,13 +107,15 @@ app.put('/feedback/:id', (req, res) => {
 app.post('/feedback/signup', async (req, res) => {
   const email = req.body.email;
   const salt = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+  const hashedPassword = bcrypt.hashSync(req.body.password, salt)
   let queryText = `INSERT INTO "users" ("email", "hashed_password")
   VALUES ($1, $2);`;
   try{
     const signUp = await pool.query(queryText, [email, hashedPassword]);
-    const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'});
-    res.json({ email,token })
+    if (signUp) {
+      const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'});
+      res.json({ 'email': email, token })
+    }
   } catch (err) {
     console.error(err);
     if (err) {
@@ -127,10 +129,6 @@ app.post('/feedback/signup', async (req, res) => {
 app.post('/feedback/login', async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const admin = false;
-  if (email = 'admin@admin.com'){
-    admin = true;
-  }
   let queryText = `SELECT * FROM "users" where "email" = $1;`;
   try{
     const users = await pool.query(queryText, [email]);
@@ -140,7 +138,7 @@ app.post('/feedback/login', async (req, res) => {
     const success = await bcrypt.compare(password, users.rows[0].hashed_password )
     const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'});
     if (success) {
-      res.json({ 'email': users.rows[0].email, 'admin': admin, token })
+      res.json({ 'email': users.rows[0].email, token})
     }
     else {
       res.json({ detail: 'Login failed.' })
@@ -159,5 +157,3 @@ app.post('/feedback/login', async (req, res) => {
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);
 });
-
-
