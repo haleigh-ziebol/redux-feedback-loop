@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 //import Components
 import Home from '../Home/Home';
@@ -17,6 +18,7 @@ import Badge from '@mui/material/Badge';
 function NavBar() {
     
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
+    const [cookies, setCookie, removeCookie] = useState(null);
 
     const handleTabChange = (e,value) => {
         setCurrentTabIndex(value);
@@ -39,7 +41,7 @@ function NavBar() {
     //runs fetchFlagged
     useEffect(() => {
         fetchFlagged()
-    }, [])
+    }, [cookies])
 
   return (
     <div>

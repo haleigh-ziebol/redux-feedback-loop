@@ -7,18 +7,20 @@ import Button from '@mui/material/Button'
 
 function Home(){
 
+    const [cookies, setCookie, removeCookie] = useCookies(null);
+    const userEmail = cookies.Email;
+    const authToken = cookies.AuthToken;
+
+    const history = useHistory();
+
     const handleSubmit = () => {
-        if (cookies) {
+        if (cookies && authToken) {
             history.push('/feeling')
         }
         else {
             history.push('/entersite')
         }
     }
-    
-    const [cookies, setCookie, removeCookie] = useCookies(null);
-    const history = useHistory();
-    
 
     return(
         <div>

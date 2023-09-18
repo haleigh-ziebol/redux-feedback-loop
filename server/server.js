@@ -19,8 +19,9 @@ const pool = require('./modules/pool');
 //POST new feedback as user
 app.post('/feedback/',  (req, res) => {
     let newFeedback = req.body;
+    console.log(newFeedback)
     console.log(`Adding feedback`, newFeedback);
-    let queryText = `INSERT INTO "feedback" ("userEmail", "feeling", "understanding", "support", "comments")
+    let queryText = `INSERT INTO "feedback" ("user_email", "feeling", "understanding", "support", "comments")
     VALUES ($1, $2, $3, $4, $5);`;
     pool.query(queryText, [newFeedback.userEmail, newFeedback.feeling, newFeedback.understanding, newFeedback.support, newFeedback.comments])
       .then(result => {

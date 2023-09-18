@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {HashRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route, Redirect} from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
 //import components
@@ -35,51 +35,52 @@ function App() {
       </div>
 
       {/* routes for feedback */}
-      <Route path='/feeling' exact element ={
-        cookies ? (
-            <Feeling />
-          ): (
-            <Navigate replace to={'/'} />
-          )
-        }
-      />
+      <Route exact path='/feeling'>
+          {userEmail && authToken ? 
+            <Feeling /> 
+            :    
+            <Redirect to="/" />}
+      </Route>
 
-      <Route path='/understanding' exact element ={
-        cookies ? (
-            <Understanding />
-          ): (
-            <Navigate replace to={'/'} />
-          )
-        }
-      />
+      <Route exact path='/understanding'>
+          {userEmail && authToken ? 
+            <Understanding /> 
+            :    
+            <Redirect to="/" />}
+      </Route>
 
-      <Route path='/support' exact element ={
-        cookies ? (
-            <Support />
-          ): (
-            <Navigate replace to={'/'} />
-          )
-        }
-      />
-      <Route path='/comments' exact element ={
-        cookies ? (
-            <Comments />
-          ): (
-            <Navigate replace to={'/'} />
-          )
-        }
-      />
-      <Route path='/comments' exact>
-        <Comments />
+      <Route exact path='/support'>
+          {userEmail && authToken ? 
+            <Support /> 
+            :    
+            <Redirect to="/" />}
       </Route>
-      <Route path='/review' exact>
-        <Review />
+
+      <Route exact path='/comments'>
+          {userEmail && authToken ? 
+            <Comments /> 
+            :    
+            <Redirect to="/" />}
       </Route>
-      <Route path='/submitted' exact>
-        <Submitted />
+
+      <Route exact path='/review'>
+          {userEmail && authToken ? 
+            <Review /> 
+            :    
+            <Redirect to="/" />}
       </Route>
-      <Route path='/edit' exact>
-        <EditRaw />
+
+      <Route exact path='/submitted'>
+          {userEmail && authToken ? 
+            <Submitted /> 
+            :    
+            <Redirect to="/" />}
+      </Route>
+      <Route exact path='/edit'>
+          {userEmail && authToken ? 
+            <EditRaw /> 
+            :    
+            <Redirect to="/" />}
       </Route>
 
       {/* routes for login & auth */}

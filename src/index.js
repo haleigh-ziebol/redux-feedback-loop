@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import './index.css';
+import {CookiesProvider} from 'react-cookie';
 import App from './components/App/App';
 
 const feelingReducer = (state = 0, action) => {
@@ -114,9 +115,11 @@ const loggingInReducer = (state = true, action) => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    <CookiesProvider>
     <React.StrictMode>
         <Provider store={storeInstance} >
           <App/>
         </Provider>
     </React.StrictMode>
+    </CookiesProvider>
 );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import {useHistory} from 'react-router-dom';
 import { useDispatch } from "react-redux";
@@ -9,7 +9,8 @@ import Stack from '@mui/material/Stack';
 
 function LoginButtons() {
     const [cookies, setCookie, removeCookie] = useCookies(null);
-    const [isLoggedin, setIsLoggedin] = useState(false);
+    const userEmail = cookies.Email;
+    const authToken = cookies.AuthToken;
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function LoginButtons() {
         console.log('signout');
         removeCookie('Email');
         removeCookie('AuthToken');
-        history.push('/');
+        history.push('/entersite');
         window.location.reload;
     }
 
@@ -30,17 +31,19 @@ function LoginButtons() {
 
     }
 
+    useEffect(() => {
+        () => {window.location.reload}
+    }, [])
     
-
     return(
         <div className="login-bar">
-            { !isLoggedin &&
+            { !authToken &&
                 <Stack spacing={4} direction="row" justifyContent="space-evenly">
                     <Button onClick={()=>history.push('/entersite')}>Log In</Button>
                     <Button onClick={handleSignup}>Sign Up</Button>
                 </Stack>
             }
-            { isLoggedin &&
+            { authToken &&
                 <Button onClick={handleSignOut}>Log Out</Button>            
             }
         </div>
