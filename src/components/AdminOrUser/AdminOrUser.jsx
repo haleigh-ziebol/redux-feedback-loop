@@ -36,7 +36,7 @@ function AdminOrUser() {
 
     return (
         <div>
-            {(userEmail == 'admin@admin.com') 
+            {(userEmail == 'admin@') 
             ? <Admin />
             : <UsersFeedback />
             }
