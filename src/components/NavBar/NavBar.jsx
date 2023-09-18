@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { useHistory } from 'react-router-dom';
 
 //import Components
 import Home from '../Home/Home';
@@ -14,16 +15,21 @@ import Box from '@mui/material/Box';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Badge from '@mui/material/Badge';
+import UsersFeedback from '../UsersFeedback/UsersFeedback';
 
 function NavBar() {
     
     const [currentTabIndex, setCurrentTabIndex] = useState('0');
-    const [cookies, setCookie, removeCookie] = useState(null);
+    const [cookies, setCookie, removeCookie] = useCookies(null);
+    const authToken = cookies.AuthToken;
+    const admin = cookies.admin;
+    const history = useHistory();
 
     const handleTabChange = (e,value) => {
         setCurrentTabIndex(value);
     };
 
+    //flagged
     const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
     const dispatch = useDispatch();
 
@@ -41,7 +47,7 @@ function NavBar() {
     //runs fetchFlagged
     useEffect(() => {
         fetchFlagged()
-    }, [cookies])
+    }, [cookies]) //end flagged
 
   return (
     <div>
@@ -66,10 +72,16 @@ function NavBar() {
         {currentTabIndex ==='0' && (
             <Home />
         )}
-        {currentTabIndex ==='1' && (
-            <Admin fetchFlagged={fetchFlagged} />
+        {(currentTabIndex ==='1' && !authToken) && (
+            history.push('/entersite'),
+            setCurrentTabIndex('0')
         )}
-        
+        {(currentTabIndex ==='1' && !admin && authToken) && (
+            <UsersFeedback />
+        )}
+        {(currentTabIndex ==='1' && admin && authToken) && (
+            <Admin fetchFlagged={fetchFlagged} />
+        )} 
     </div>
   );
 

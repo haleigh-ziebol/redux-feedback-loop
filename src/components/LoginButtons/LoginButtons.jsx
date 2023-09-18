@@ -9,7 +9,6 @@ import Stack from '@mui/material/Stack';
 
 function LoginButtons() {
     const [cookies, setCookie, removeCookie] = useCookies(null);
-    const userEmail = cookies.Email;
     const authToken = cookies.AuthToken;
 
     const history = useHistory();
@@ -28,7 +27,6 @@ function LoginButtons() {
     const handleSignup = () => {
         dispatch({type: 'SET_SIGNUP'});
         history.push('/entersite');
-
     }
 
     useEffect(() => {

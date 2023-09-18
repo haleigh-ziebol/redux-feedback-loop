@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 //import components
-import Auth from '../Auth/Auth';
+import AuthModal from "../AuthModal/AuthModal";
 
 //code from Ania Kubow To Do App Demo
 
 function UsersFeedback() {
 
-    const userEmail = 'test@test.com';
-    const [feedback, setFeedback] = useState([]);
+    const [cookies, setCookie, removeCookie] = useCookies(null);
+    const userEmail = cookies.Email;
+    const authToken = cookies.AuthToken;
 
-    const authToken = true;
+    const [feedback, setFeedback] = useState([]);
 
     const feedbackList = async () => {
         try {
@@ -30,7 +32,7 @@ function UsersFeedback() {
     return(
 
         <div>
-            {!authToken && <Auth/>}
+            {!authToken && <AuthModal/>}
             {authToken &&
             <div> <p>insert list here</p> </div>
             }
