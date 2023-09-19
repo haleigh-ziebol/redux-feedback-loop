@@ -24,8 +24,8 @@ function FeedbackItem({feedback, fetchData, fetchFlagged}) {
         axios.put(`/feedback/${id}`)
         .then((response) =>{
         console.log(response.data);
-        fetchData();
-        fetchFlagged();
+        fetchData(); //updates feedback
+        fetchFlagged(); //updates notifications
         })
         .catch((error) => {
         console.log(error)
@@ -34,12 +34,12 @@ function FeedbackItem({feedback, fetchData, fetchFlagged}) {
 
     return(
         <tr key={feedback.id} className={(feedback.flagged) ? "flagged" : "" }>
-                    <td className={(feedback.feeling<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.feeling}</td>
-                    <td className={(feedback.understanding<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.understanding}</td>
-                    <td className={(feedback.support<5 ) ? "highlighted" : "" }>{feedback.support}</td>
-                    <td>{feedback.comments}</td>
-                    {editView && <td><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>}
-                    {editView && <td><Button variant="text" onClick={handleFlag}><OutlinedFlagSharpIcon /></Button></td>}
+                    <td key='1' className={(feedback.feeling<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.feeling}</td>
+                    <td key='2' className={(feedback.understanding<5 && !feedback.flagged) ? "highlighted" : "" }>{feedback.understanding}</td>
+                    <td key ='3' className={(feedback.support<5 ) ? "highlighted" : "" }>{feedback.support}</td>
+                    <td key ='4'>{feedback.comments}</td>
+                    {editView && <td key='5'><Button variant="text" onClick={handleDelete}><DeleteOutlinedIcon /></Button></td>}
+                    {editView && <td key='6'><Button variant="text" onClick={handleFlag}><OutlinedFlagSharpIcon /></Button></td>}
         </tr>
     )
     

@@ -72,9 +72,13 @@ function Admin({fetchFlagged}){
     } //end handleDelete
 
 
-    //runs fetchData & openDialog
+    //runs fetchData on open
     useEffect(() => {
         fetchData();
+    }, [])
+
+    //runs openDialog when dialogOpen var is true
+    useEffect(() => {
         if(dialogOpen) {
             openDialog();
         }
@@ -132,7 +136,7 @@ function Admin({fetchFlagged}){
                         <tbody>
                             {feedbackList.map((feedback) => {
                                 return (
-                                    <FeedbackItem feedback={feedback} fetchData={fetchData} fetchFlagged={fetchFlagged} />
+                                    <FeedbackItem key={feedback.id} feedback={feedback} fetchData={fetchData} fetchFlagged={fetchFlagged} />
                                 )
                             })}
                         </tbody>
