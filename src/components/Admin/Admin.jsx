@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie';
 
 //child components
 import FeedbackItem from '../FeedbackItem/FeedbackItem.jsx'
@@ -13,11 +14,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-function Admin({fetchFlagged}){
+function Admin(){
     
     const axios = Axios;
     const [feedbackList, setFeedbackList] = useState([]);  
-
+    const [cookies, setCookie, removeCookie] = useCookies(null);
+    
     //fetch feedback list
     const fetchData = () => {
         axios.get('/feedbacklist')
@@ -81,6 +83,21 @@ function Admin({fetchFlagged}){
 
     }, [dialogOpen])
 
+    //fetch notification number for flagged feedback
+    const fetchFlagged= () => {
+        axios.get('/flagged')
+        .then((response) =>{
+        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
+        })
+        .catch((error) => {
+        console.log(error)
+        })
+    } /// end fetchFlagged
+
+    //runs fetchFlagged
+    useEffect(() => {
+        fetchFlagged()
+    }, [cookies]) //end flagged
 
     return(
         <div>

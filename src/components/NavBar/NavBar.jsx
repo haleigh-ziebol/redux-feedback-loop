@@ -29,6 +29,7 @@ function NavBar() {
         setCurrentTabIndex(value);
     };
 
+
   return (
     <div>
         <Box sx={{ width: '100%' }}>

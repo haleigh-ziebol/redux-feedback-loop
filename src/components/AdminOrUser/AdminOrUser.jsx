@@ -13,25 +13,8 @@ function AdminOrUser() {
     const userEmail = cookies.Email;
 
     //flagged
-    const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
     const dispatch = useDispatch();
     console.log(cookies)
-
-    //fetch notification number for flagged feedback
-    const fetchFlagged= () => {
-        axios.get('/flagged')
-        .then((response) =>{
-        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
-        })
-        .catch((error) => {
-        console.log(error)
-        })
-    } /// end fetchFlagged
-
-    //runs fetchFlagged
-    useEffect(() => {
-        fetchFlagged()
-    }, [cookies]) //end flagged
 
 
     return (
