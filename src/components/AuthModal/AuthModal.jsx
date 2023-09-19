@@ -62,6 +62,7 @@ function AuthModal() {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({email, password})
         })
+        console.log("haleigh", JSON.stringify({email, password}))
         const data = await response.json()
             if (data.detail){
                 setError(data.detail)
@@ -109,7 +110,7 @@ function AuthModal() {
                             <br/>
                             <br/>
                             <label htmlFor="password">Password:</label>
-                            <input type="text" id ="password" 
+                            <input type="password" id ="password" 
                                 value={password} onChange={(e)=>setPassword(e.target.value)} 
                                 placeholder="password" required 
                             />
@@ -118,7 +119,7 @@ function AuthModal() {
                             { !loginMode && 
                             <div>
                                 <label htmlFor="confirmpw">Confirm Password:</label>
-                                <input type="text" id ="confirmpw" 
+                                <input type="password" id ="confirmpw" 
                                     value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} 
                                     placeholder="password" required 
                                 />

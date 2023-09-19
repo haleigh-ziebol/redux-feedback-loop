@@ -31,6 +31,7 @@ router.post('/signup', async (req, res) => {
 
 //POST login (from Ania Kubow)
 router.post('/login', async (req, res) => {
+  console.log("hi", req.body)
   const email = req.body.email;
   const password = req.body.password;
   let queryText = `SELECT * FROM "users" where "email" = $1;`;
@@ -40,7 +41,7 @@ router.post('/login', async (req, res) => {
       return res.json({ detail: 'User does not exist!' })
     }
     const success = await bcrypt.compare(password, users.rows[0].hashed_password )
-    const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'});
+    const token = jwt.sign({ email }, 'secret', {expiresIn: '1hr'}); //'secret' is a placeholder
     if (success) {
       res.json({ 'email': users.rows[0].email, token})
     }
