@@ -37,8 +37,6 @@ function AuthModal() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    console.log(cookies)
-
     // set login vs sign up
     const viewLogin = (status) => {
         if(status){
@@ -58,6 +56,7 @@ function AuthModal() {
             setError('Make sure passwords match!')
             return
         }
+        try {
         const response = await fetch (`/user/${endpoint}`, {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
@@ -74,6 +73,9 @@ function AuthModal() {
                 setOpen(false);
                 history.push('/');
             }
+        } catch(error){
+            
+        }
     }
 
     //Modal

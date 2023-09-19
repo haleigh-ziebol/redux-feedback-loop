@@ -1,13 +1,15 @@
 const express = require('express');
 const router = new express.Router();
 const pool = require('../modules/pool');
+const bodyParser = require('body-parser')
 
 //user auth packages
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //POST signup new user (from Ania Kubow)
-router.post('/signup', async (req, res) => {
+router.post('/signup', bodyParser.json(), async (req, res) => {
+  console.log(req.body)
   const email = req.body.email;
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt)
@@ -29,7 +31,7 @@ router.post('/signup', async (req, res) => {
 });//end POST
 
 //POST login (from Ania Kubow)
-router.post('/login', async (req, res) => {
+router.post('/login', bodyParser.json(), async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   let queryText = `SELECT * FROM "users" where "email" = $1;`;
