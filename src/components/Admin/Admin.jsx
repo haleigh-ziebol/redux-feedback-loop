@@ -74,7 +74,7 @@ function Admin(){
     } //end handleDelete
 
 
-    //runs fetchData & openDialog
+    //runs openDialog when dialogOpen variable true
     useEffect(() => {
         fetchData();
         if(dialogOpen) {
@@ -82,6 +82,11 @@ function Admin(){
         }
 
     }, [dialogOpen])
+
+    //runs fetchData on open
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     //fetch notification number for flagged feedback
     const fetchFlagged= () => {
