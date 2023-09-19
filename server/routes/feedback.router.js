@@ -1,10 +1,9 @@
 const express = require('express');
 const router = new express.Router();
 const pool = require('../modules/pool');
-const bodyParser = require('body-parser')
 
 //POST new feedback as user
-router.post('/', bodyParser.json(),  (req, res) => {
+router.post('/',  (req, res) => {
     let newFeedback = req.body;
     console.log(newFeedback)
     console.log(`Adding feedback`, newFeedback);
@@ -21,7 +20,7 @@ router.post('/', bodyParser.json(),  (req, res) => {
 });//end POST
 
 //GET feedback submitted by user
-router.get('/:userEmail', bodyParser.json(),  (req, res) => {
+router.get('/:userEmail', (req, res) => {
     const userEmail = req.params.userEmail
     let queryText = `SELECT * FROM "feedback" WHERE "user_email" =$1;`;
     pool.query(queryText, [userEmail])
@@ -35,7 +34,7 @@ router.get('/:userEmail', bodyParser.json(),  (req, res) => {
 }); //end GET
 
 //GET whole list for admin
-router.get('/adminlist', bodyParser.json(),  (req, res) => {
+router.get('/adminlist',  (req, res) => {
     let queryText = `SELECT * FROM "feedback";`;
     pool.query(queryText)
       .then(result => {
@@ -48,7 +47,7 @@ router.get('/adminlist', bodyParser.json(),  (req, res) => {
 }); //end GET
 
 //GET flagged feedback for admin
-router.get('/flagged', bodyParser.json(),  (req, res) => {
+router.get('/flagged', (req, res) => {
     let queryText = `SELECT COUNT(*) FILTER (WHERE "flagged")
     from "feedback";`;
     pool.query(queryText)
@@ -62,7 +61,7 @@ router.get('/flagged', bodyParser.json(),  (req, res) => {
 }); //end GET
 
 // DELETE feedback by ID for admin
-router.delete('/:id', bodyParser.json(), (req, res) => {
+router.delete('/:id', (req, res) => {
   let id = req.params.id;
   let queryText = 'DELETE FROM "feedback" WHERE "id" = $1;';
   pool.query(queryText,[id] )
@@ -76,7 +75,7 @@ router.delete('/:id', bodyParser.json(), (req, res) => {
 }); //end DELETE
 
 // PUT to update flagged status by ID for admin
-router.put('/:id', bodyParser.json(), (req, res) => {
+router.put('/:id', (req, res) => {
   let id = req.params.id;
   let queryText = `UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;`;
   pool.query(queryText, [id]) //corresponds to $1
