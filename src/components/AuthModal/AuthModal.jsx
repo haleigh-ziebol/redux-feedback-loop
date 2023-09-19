@@ -58,7 +58,7 @@ function AuthModal() {
             setError('Make sure passwords match!')
             return
         }
-        const response = await fetch (`/feedback/${endpoint}`, {
+        const response = await fetch (`/user/${endpoint}`, {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({email, password})

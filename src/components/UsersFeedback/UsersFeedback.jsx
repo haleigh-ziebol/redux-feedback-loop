@@ -16,7 +16,7 @@ function UsersFeedback() {
 
     //fetch feedback list
     const fetchData = () => {
-        axios.get(`userfeedback/${userEmail}`)
+        axios.get(`/feedback/${userEmail}`)
         .then((response) =>{
         console.log(response.data);
         setFeedback(response.data);

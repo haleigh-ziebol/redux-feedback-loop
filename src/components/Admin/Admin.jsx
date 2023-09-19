@@ -19,10 +19,10 @@ function Admin(){
     const axios = Axios;
     const [feedbackList, setFeedbackList] = useState([]);  
     const [cookies, setCookie, removeCookie] = useCookies(null);
-    
+
     //fetch feedback list
     const fetchData = () => {
-        axios.get('/feedbacklist')
+        axios.get('/feedback/adminlist')
         .then((response) =>{
         console.log(response.data);
         setFeedbackList(response.data);
@@ -85,9 +85,9 @@ function Admin(){
 
     //fetch notification number for flagged feedback
     const fetchFlagged= () => {
-        axios.get('/flagged')
+        axios.get('/feedback/flagged')
         .then((response) =>{
-        dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
+            dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
         })
         .catch((error) => {
         console.log(error)

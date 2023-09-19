@@ -76,8 +76,11 @@ const editViewReducer = (state = false, action) => {
   return state;
 }
 
-const flaggedNotificationReducer = (state = '', action) => {
-  if(action.type === 'UPDATE_FLAGGED') {
+const flaggedNotificationReducer = (state = null, action) => {
+  if(action.type === 'UPDATE_FLAGGED' && action.payload == null) {
+    return null
+  }
+  else if(action.type === 'UPDATE_FLAGGED') {
     return action.payload
   }
   return state;
