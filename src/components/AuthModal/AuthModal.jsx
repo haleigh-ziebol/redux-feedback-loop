@@ -49,7 +49,32 @@ function AuthModal() {
         }
     }
 
-    // Called when the submit button is pressed
+    // // Called when the submit button is pressed
+
+    // const handleSubmit = (endpoint) => {
+    //     if (!loginMode && password !== confirmPassword) {
+    //         setError('Make sure passwords match!')
+    //         return
+    //     }
+    //     if 
+    //     let newFeedback = {
+    //             userEmail: userEmail,
+    //             feeling: feeling,
+    //             understanding: understanding,
+    //             support: support,
+    //             comments: comments
+    //     }
+    //     axios.post('/feedback', newFeedback)
+    //     .then(response =>{
+    //         history.push('/submitted');
+    //         dispatch({type: 'EXIT_BACK'})
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //       alert('Sorry cannot add feedback')
+    //     })
+    // }
+
     const handleSubmit = async (e, endpoint) => {
         e.preventDefault();
         if (!loginMode && password !== confirmPassword) {
@@ -101,7 +126,7 @@ function AuthModal() {
                         </div>
                         <h2>{loginMode ? 'Please log in' : 'Please sign up'}</h2>
                         
-                        <form onSubmit={(e) => handleSubmit(e,loginMode ? 'login' : 'signup')}>
+                        <form onSubmit={(e) => handleSubmit(e, loginMode ? 'login' : 'signup')}>
                             <label htmlFor="email">Email Address:</label>
                             <input type="text" id ="email" 
                                 value={email} onChange={(e)=>setEmail(e.target.value)} 

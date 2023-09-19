@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 
@@ -26,7 +25,13 @@ function NavBar() {
     const flaggedCount = useSelector((store)=>store.flaggedNotificationReducer)
 
     const handleTabChange = (e,value) => {
-        setCurrentTabIndex(value);
+        if (!authToken) {
+            history.push('/entersite')
+            setCurrentTabIndex('0')
+        }
+        else {
+            setCurrentTabIndex(value);
+        }
     };
 
 
@@ -52,10 +57,6 @@ function NavBar() {
         </Box>
         {currentTabIndex ==='0' && (
             <Home />
-        )}
-        {(currentTabIndex ==='1' && !authToken) && (
-            history.push('/entersite'),
-            setCurrentTabIndex('0')
         )}
         {(currentTabIndex ==='1' && authToken) && (
             <AdminOrUser />
