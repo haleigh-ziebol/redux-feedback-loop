@@ -90,7 +90,6 @@ function Admin(){
         })
     } //end handleDelete
 
-
     //fetch notification number for flagged feedback
     const fetchFlagged= () => {
         axios.get('/feedback/flagged')
@@ -102,10 +101,32 @@ function Admin(){
         })
     } /// end fetchFlagged
 
-    //runs fetchFlagged
+    //runs fetchData on open
     useEffect(() => {
-        fetchFlagged()
-    }, [cookies]) //end flagged
+        fetchData();
+    }, [])
+
+    //runs openDialog when dialogOpen var is true
+    useEffect(() => {
+        if(dialogOpen) {
+            openDialog();
+        }
+
+    }, [dialogOpen])
+
+    //runs fetchData on open
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    //runs openDialog when dialogOpen var is true
+    useEffect(() => {
+        if(dialogOpen) {
+            openDialog();
+        }
+
+    }, [dialogOpen])
+
 
     return(
         <div>
@@ -158,7 +179,7 @@ function Admin(){
                         <tbody>
                             {feedbackList.map((feedback) => {
                                 return (
-                                    <FeedbackItem feedback={feedback} fetchData={fetchData} fetchFlagged={fetchFlagged} />
+                                    <FeedbackItem key={feedback.id} feedback={feedback} fetchData={fetchData} fetchFlagged={fetchFlagged} />
                                 )
                             })}
                         </tbody>
