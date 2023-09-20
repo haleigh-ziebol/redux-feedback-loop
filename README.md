@@ -14,7 +14,8 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
 #### Admin Mode <br/>
     edit mode with ability to flag or delete feedback <br/>
     notification badge for flagged feedback <br/>
-    ![Admin Screen](/Images/admin.png)
+
+![Admin Screen](/Images/admin.png)
 
 #### User Mode <br/>
     enter feedback, go back in the feedback to edit <br/>
