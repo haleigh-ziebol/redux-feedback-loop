@@ -134,7 +134,7 @@ function Admin(){
             <br/>
             {
                 (feedbackList.length ==0) ?
-                <div>
+                <div className="center">
                     <p>No feedback currently! Check back later.</p>
                 </div> :
 

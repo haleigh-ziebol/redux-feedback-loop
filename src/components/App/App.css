@@ -62,14 +62,13 @@ table{
 
 /*misc formatting*/
 
-.home{
-  padding: 15px;
-}
-
 .login-bar{
   padding: 15px;
 }
 
-.userFeedback{
-  padding: 15px;
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

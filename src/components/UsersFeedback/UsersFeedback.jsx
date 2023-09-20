@@ -33,7 +33,7 @@ function UsersFeedback() {
 
     return(
 
-        <div className ="userFeedback">
+        <div className ="center">
 
             {(feedback.length == 0)
             ? <h1>Time to enter some feedback! We haven't received any from you yet.</h1>
