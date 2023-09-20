@@ -20,10 +20,9 @@ VALUES ('test@test.com',4, 4, 5, 'Doing Great!');
 
 CREATE TABLE "users" (
   "email" VARCHAR(255) PRIMARY KEY,
-  "hashed_password" VARCHAR(255),
-  "admin" boolean default false
+  "hashed_password" VARCHAR(255)
 );
 
 --Admin **password is 11**
 INSERT INTO "users" ("email", "hashed_password", "admin")
-VALUES ('admin@admin.com', '$2b$10$bz/QeEuR5aqkIRPNwYbw2ua66GgdYi63Pvli0.RkVXzalnSAr6VtC', true )
+VALUES ('admin@', '$2b$10$bz/QeEuR5aqkIRPNwYbw2ua66GgdYi63Pvli0.RkVXzalnSAr6VtC')

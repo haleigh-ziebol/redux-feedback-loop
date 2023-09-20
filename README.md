@@ -34,7 +34,17 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
 
 ## Usage
 
-1. 
+1. Log in or sign up. <br/>
+2. User <br/>
+    a. Click submit feedback button on home screen.
+    b. Submit your feedback for the 4 categories (feeling, understanding, support & comments).
+        i. Click the back button to alter your prior feedback category.
+        ii. After you hit submit, review your feedback. You can edit or submit from there.
+    c. View your submitted feedback in the admin tab.
+3. Admin <br/>
+    a. View feedback on the admin tab. <br/>
+    b. Click on the edit button to flag/unflag or delete an item of feedback. <br/>
+    c. Watch the flagged feedback notification badge change as feedback items are altered. <br/>
 
 ## Built With
 
