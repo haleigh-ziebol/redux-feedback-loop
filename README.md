@@ -6,6 +6,9 @@ Duration: 2 Weeks
 This app collects user feedback and allows an admin to view the feedback. <br/>
 
 ### Features: <br/>
+
+![Admin Screen](/Image/admin.png)
+
 #### Admin Mode <br/>
     edit mode with ability to flag or delete feedback <br/>
     notification badge for flagged feedback <br/>
@@ -13,8 +16,6 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
 #### User Mode <br/>
     enter feedback, go back in the feedback to edit <br/>
     list of feedback a given user has entered<br/>
-
-    <img src="/Image/admin.png" width="350" title="Admin">
 
 
 ## Prerequisites
