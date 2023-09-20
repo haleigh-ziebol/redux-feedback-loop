@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 
-//import Components
+//child components
 import Home from '../Home/Home';
 import AdminOrUser from '../AdminOrUser/AdminOrUser';
 

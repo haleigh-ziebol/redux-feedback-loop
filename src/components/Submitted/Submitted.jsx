@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Axios from 'axios';
 
 //MUI components
 import Box from '@mui/material/Box';

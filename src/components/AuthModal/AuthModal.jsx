@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
@@ -48,33 +48,7 @@ function AuthModal() {
             setError(null);
         }
     }
-
-    // // Called when the submit button is pressed
-
-    // const handleSubmit = (endpoint) => {
-    //     if (!loginMode && password !== confirmPassword) {
-    //         setError('Make sure passwords match!')
-    //         return
-    //     }
-    //     if 
-    //     let newFeedback = {
-    //             userEmail: userEmail,
-    //             feeling: feeling,
-    //             understanding: understanding,
-    //             support: support,
-    //             comments: comments
-    //     }
-    //     axios.post('/feedback', newFeedback)
-    //     .then(response =>{
-    //         history.push('/submitted');
-    //         dispatch({type: 'EXIT_BACK'})
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       alert('Sorry cannot add feedback')
-    //     })
-    // }
-
+    //submit sign up or login
     const handleSubmit = async (e, endpoint) => {
         e.preventDefault();
         if (!loginMode && password !== confirmPassword) {
@@ -90,19 +64,19 @@ function AuthModal() {
         console.log("haleigh", JSON.stringify({email, password}))
         const data = await response.json()
             if (data.detail){
-                setError(data.detail)
+                setError(data.detail);
             }
             else {
                 setCookie('Email', data.email);
-                setCookie('AuthToken', data.token)
-                window.location.reload
+                setCookie('AuthToken', data.token);
+                window.location.reload;
                 setOpen(false);
-                history.push('/');
+                history.push('/'); //home page
             }
         } catch(error){
-            
+           console.log(error) ;
         }
-    }
+    } // end handleSubmit
 
     //Modal
     const [open, setOpen] = useState(true);

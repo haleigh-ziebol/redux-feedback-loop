@@ -24,7 +24,7 @@ function Home(){
 
     return(
         <div>
-            { (userEmail == 'admin@')
+            { (userEmail == 'admin@') //renders different message for admin
             ? <div>
                 <h1>Hey Admin</h1>
             </div>

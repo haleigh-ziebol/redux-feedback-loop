@@ -52,7 +52,7 @@ function EditRaw() {
         })
         .catch(error => {
           console.log(error);
-          alert('Sorry cannot add feedback')
+          alert('Sorry cannot add feedback');
         })
     }
     
@@ -60,8 +60,8 @@ function EditRaw() {
     const [open, setOpen] = useState(true);
     const handleClose = () =>{
         setOpen(false);
-        history.push('/')
-        dispatch({type: 'EXIT_BACK'})
+        history.push('/');
+        dispatch({type: 'EXIT_BACK'});
     } //end Modal
 
     return (

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {HashRouter as Router, Route, Redirect} from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
-//import components
+//child components
 import Feeling from '../Feeling/Feeling';
 import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
@@ -14,7 +14,7 @@ import EditRaw from '../EditRaw/EditRaw';
 import AuthModal from '../AuthModal/AuthModal';
 
 
-//import styling
+//styling
 import './App.css';
 
 function App() {

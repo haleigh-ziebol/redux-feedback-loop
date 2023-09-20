@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import {useHistory} from 'react-router-dom';
 import { useDispatch } from "react-redux";
@@ -14,19 +14,18 @@ function LoginButtons() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    //insert dispatch to set type for modal
-
     const handleSignOut = () => {
         console.log('signout');
         removeCookie('Email');
         removeCookie('AuthToken');
         history.push('/entersite');
+        dispatch({type:'UPDATE_FLAGGED', payload: null}); //clears flags for next user
         window.location.reload;
     }
 
     const handleSignup = () => {
-        dispatch({type: 'SET_SIGNUP'});
-        history.push('/entersite');
+        dispatch({type: 'SET_SIGNUP'}); //window will open in sign up mode
+        history.push('/entersite'); 
     }
 
     useEffect(() => {

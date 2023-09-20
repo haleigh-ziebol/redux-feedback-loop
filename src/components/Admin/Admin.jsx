@@ -19,18 +19,26 @@ function Admin(){
     const axios = Axios;
     const [feedbackList, setFeedbackList] = useState([]);  
     const [cookies, setCookie, removeCookie] = useCookies(null);
+    const authToken = cookies.AuthToken;
 
     //fetch feedback list
     const fetchData = () => {
         axios.get('/feedback/adminlist')
         .then((response) =>{
-        console.log(response.data);
-        setFeedbackList(response.data);
+            console.log(response.data);
+            setFeedbackList(response.data);
         })
         .catch((error) => {
-        console.log(error)
+            console.log(error);
         })
     }
+
+    // runs fetchData on page load
+    useEffect ( () => {
+        if (authToken) {
+            fetchData();
+        }}
+    , []) //end feedback list
 
     //dialog
     const [open, setOpen] = useState(false);
@@ -40,12 +48,21 @@ function Admin(){
     const openDialog = () => {
             setOpen(true)
     }
-  
+
     const handleClose = () => {
       setOpen(false);
       dispatch({type: 'DELETE_ID', payload: ''})
       dispatch({type: 'CLOSE_DIALOG'})
-    }//end dialog
+    }
+
+    //runs openDialog when dialogOpen variable = true
+    useEffect(() => {
+        fetchData();
+        if(dialogOpen) {
+            openDialog();
+        }
+
+    }, [dialogOpen]) //end dialog
 
     //edit mode
     const editView = useSelector((store)=>store.editViewReducer); 
@@ -63,30 +80,16 @@ function Admin(){
         let id = IDtoDelete
         axios.delete(`/feedback/${id}`)
         .then((response) =>{
-        console.log(response.data);
-        fetchData();
-        fetchFlagged();
-        handleClose();
+            console.log(response.data);
+            fetchData();
+            fetchFlagged();
+            handleClose();
         })
         .catch((error) => {
-        console.log(error)
+            console.log(error);
         })
     } //end handleDelete
 
-
-    //runs openDialog when dialogOpen variable true
-    useEffect(() => {
-        fetchData();
-        if(dialogOpen) {
-            openDialog();
-        }
-
-    }, [dialogOpen])
-
-    //runs fetchData on open
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     //fetch notification number for flagged feedback
     const fetchFlagged= () => {
@@ -95,7 +98,7 @@ function Admin(){
             dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
         })
         .catch((error) => {
-        console.log(error)
+            console.log(error);
         })
     } /// end fetchFlagged
 

@@ -11,26 +11,25 @@ function UsersFeedback() {
     const authToken = cookies.AuthToken;
 
     const [feedback, setFeedback] = useState([]);
-    console.log(feedback)
-
 
     //fetch feedback list
     const fetchData = () => {
         axios.get(`/feedback/${userEmail}`)
         .then((response) =>{
-        console.log(response.data);
-        setFeedback(response.data);
+            console.log(response.data);
+            setFeedback(response.data);
         })
         .catch((error) => {
-        console.log(error)
+            console.log(error)
         })
     }
 
+    // runs fetchData on page load
     useEffect ( () => {
         if (authToken) {
             fetchData();
         }}
-        , [])
+    , [])
 
     return(
 

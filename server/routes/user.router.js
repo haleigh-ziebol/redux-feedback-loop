@@ -31,7 +31,6 @@ router.post('/signup', async (req, res) => {
 
 //POST login (from Ania Kubow)
 router.post('/login', async (req, res) => {
-  console.log("hi", req.body)
   const email = req.body.email;
   const password = req.body.password;
   let queryText = `SELECT * FROM "users" where "email" = $1;`;
