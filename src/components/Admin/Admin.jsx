@@ -71,6 +71,29 @@ function Admin({fetchFlagged}){
         })
     } //end handleDelete
 
+    //fetch notification number for flagged feedback
+    const fetchFlagged= () => {
+        axios.get('/feedback/flagged')
+        .then((response) =>{
+            dispatch({type:'UPDATE_FLAGGED', payload: response.data.count});
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    } /// end fetchFlagged
+
+    //runs fetchData on open
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    //runs openDialog when dialogOpen var is true
+    useEffect(() => {
+        if(dialogOpen) {
+            openDialog();
+        }
+
+    }, [dialogOpen])
 
     //runs fetchData on open
     useEffect(() => {
