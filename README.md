@@ -1,6 +1,4 @@
-# Project Name
-
-Feedback App
+# Redux Feedback Loop App
 
 ## Description
 Duration: 2 Weeks
@@ -8,20 +6,18 @@ Duration: 2 Weeks
 This app collects user feedback and allows an admin to view the feedback. <br/>
 
 ### Features: <br/>
-admin mode <br/>
+#### admin mode <br/>
     edit mode with ability to flag or delete feedback <br/>
     notification badge for flagged feedback <br/>
 
-user mode<br/>
+#### user mode <br/>
     enter feedback, go back in the feedback to edit <br/>
     list of feedback a given user has entered<br/>
 
+    ![login](wireframes/login.png)
+
+
 ## Prerequisites
-
-
-    ![Alt text](homescreen.png)
-    ![Alt text](login.png)
-    ![Alt text](admin.png)
 
 ## Installation
 
