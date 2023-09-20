@@ -14,7 +14,7 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
     enter feedback, go back in the feedback to edit <br/>
     list of feedback a given user has entered<br/>
 
-    ![Screenshot](/Images/login.png)
+    <img src="/Image/admin.png" width="350" title="Admin">
 
 
 ## Prerequisites
