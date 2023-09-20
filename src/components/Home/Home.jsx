@@ -28,7 +28,7 @@ function Home(){
             ? <div>
                 <h1>Hey Admin</h1>
             </div>
-            : <div>
+            : <div className="home">
                     <div>
                         <h1>Help us help you!</h1>
                         <h3>Your feedback informs our teaching! We want you to succeed!</h3>

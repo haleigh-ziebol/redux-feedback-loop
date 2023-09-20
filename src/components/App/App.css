@@ -59,3 +59,17 @@ tbody tr:nth-child(even) {
 table{
   padding: 15px;
 }
+
+/*misc formatting*/
+
+.home{
+  padding: 15px;
+}
+
+.login-bar{
+  padding: 15px;
+}
+
+.userFeedback{
+  padding: 15px;
+}

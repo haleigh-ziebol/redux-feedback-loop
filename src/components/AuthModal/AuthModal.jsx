@@ -132,11 +132,10 @@ function AuthModal() {
                             </div>
                         </form>
                         <br/>
-                        <div>
-                            <p>Set Mode:</p>
-                            <Button variant="text" onClick={() => viewLogin(false)}>Sign up</Button>
-                            <Button variant="text" onClick={() => viewLogin(true)}>Log in</Button>
-                        </div>
+                        <Stack spacing={2} direction="row" justifyContent="center">
+                            <Button variant="text" onClick={() => viewLogin(false)}>Sign up Mode</Button>
+                            <Button variant="text" onClick={() => viewLogin(true)}>Log in Mode</Button>
+                        </Stack>
                     </Stack>
                 </Box>
             </Modal>
