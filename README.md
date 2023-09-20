@@ -6,15 +6,15 @@ Duration: 2 Weeks
 This app collects user feedback and allows an admin to view the feedback. <br/>
 
 ### Features: <br/>
-#### admin mode <br/>
+#### Admin Mode <br/>
     edit mode with ability to flag or delete feedback <br/>
     notification badge for flagged feedback <br/>
 
-#### user mode <br/>
+#### User Mode <br/>
     enter feedback, go back in the feedback to edit <br/>
     list of feedback a given user has entered<br/>
 
-    ![login](wireframes/login.png)
+    ![Screenshot](/Images/login.png)
 
 
 ## Prerequisites
