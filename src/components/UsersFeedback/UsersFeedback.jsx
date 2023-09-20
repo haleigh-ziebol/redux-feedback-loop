@@ -35,8 +35,8 @@ function UsersFeedback() {
 
         <div>
 
-            {(feedback == null)
-            ? <p>no feedback entered</p>
+            {(feedback.length == 0)
+            ? <h1>Time to enter some feedback! We haven't received any from you yet.</h1>
             : <div>
                 <div className="table-header">
                     <h1>Feedback</h1>
