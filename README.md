@@ -7,7 +7,7 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
 
 ### Features: <br/>
 
-![Admin Screen](/Image/admin.png)
+![Admin Screen](/Images/admin.png)
 
 #### Admin Mode <br/>
     edit mode with ability to flag or delete feedback <br/>
