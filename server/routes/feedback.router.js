@@ -48,7 +48,7 @@ router.get('/flagged', (req, res) => {
 }); //end GET
 
 //GET feedback submitted by user
-router.get('/:userEmail', (req, res) => {
+router.get('/user/:userEmail', (req, res) => {
   const userEmail = req.params.userEmail;
   console.log('Fetching all users feedback')
   let queryText = `SELECT * FROM "feedback" WHERE "user_email" =$1;`;
