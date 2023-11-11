@@ -1,7 +1,7 @@
 # Redux Feedback Loop App
 
 ## Description
-Duration: 2 Weeks
+Duration: 2 Weeks <br/>
 Completed: 9/21/2023
 
 This app collects user feedback and allows an admin to view the feedback. <br/>
