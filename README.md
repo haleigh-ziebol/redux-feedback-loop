@@ -2,6 +2,7 @@
 
 ## Description
 Duration: 2 Weeks
+Completed: 9/21/2023
 
 This app collects user feedback and allows an admin to view the feedback. <br/>
 
