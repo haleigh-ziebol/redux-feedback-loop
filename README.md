@@ -21,6 +21,12 @@ This app collects user feedback and allows an admin to view the feedback. <br/>
 
 
 ## Prerequisites
+1. Install the latest version of npm
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+2. Install Node.js
 
 ## Installation
 
